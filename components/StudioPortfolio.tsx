@@ -1,7 +1,13 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import Image from 'next/image';
 import { useState } from 'react';
 // This would typically come from a database or API
@@ -60,7 +66,7 @@ export function StudioPortfolio() {
   const [selectedItem, setSelectedItem] = useState<(typeof portfolioItems)[0] | null>(null);
 
   return (
-    <section className="py-16 bg-background">
+    <section className="py-16 bg-background w-full">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-center">Our Portfolio</h2>
         <div className="max-w-3xl mx-auto text-center mb-12">
@@ -102,8 +108,12 @@ export function StudioPortfolio() {
                       className="shadow-md w-full h-full object-cover"
                     />
                     <div className="flex flex-col justify-center">
-                      <h3 className="text-2xl font-semibold mb-2">{selectedItem.artist}</h3>
-                      <p className="text-lg mb-4">{selectedItem.style}</p>
+                      <DialogTitle className="text-2xl font-semibold mb-2">
+                        {selectedItem.artist}
+                      </DialogTitle>
+                      <DialogDescription className="text-lg mb-4">
+                        {selectedItem.style}
+                      </DialogDescription>
                       <Button asChild>
                         <a href={`/artists/${selectedItem.artist.toLowerCase().replace(' ', '-')}`}>
                           View Artist Profile

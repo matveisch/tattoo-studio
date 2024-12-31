@@ -1,3 +1,4 @@
+import { AboutUs } from '@/components/AboutUs';
 import { ArtistsShowcase } from '../components/ArtistShowcase';
 import { ClientCare } from '../components/ClientCare';
 import Hero from '../components/Hero';
@@ -11,6 +12,7 @@ export default function Home() {
         <ArtistsShowcase />
         <StudioPortfolio />
         <ClientCare />
+        <AboutUs />
       </main>
     </div>
   );
