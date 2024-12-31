@@ -37,7 +37,7 @@ export function Contact() {
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
-                className="rounded-lg shadow-md"
+                className="shadow-md"
               ></iframe>
             </div>
             <div className="mb-6">
@@ -50,7 +50,7 @@ export function Contact() {
             </div>
             <div>
               <h3 className="text-xl font-semibold mb-2">Get in Touch</h3>
-              <Button className="w-full" asChild>
+              <Button className="w-full rounded-none" asChild>
                 <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
                   <WhatsappIcon className="mr-2 h-4 w-4" /> Chat on WhatsApp
                 </a>
@@ -70,6 +70,7 @@ export function Contact() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
+                  className="rounded-none"
                   placeholder="Your Name"
                 />
               </div>
@@ -83,6 +84,7 @@ export function Contact() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  className="rounded-none"
                   placeholder="your@email.com"
                 />
               </div>
@@ -92,6 +94,7 @@ export function Contact() {
                 </label>
                 <Textarea
                   id="message"
+                  className="rounded-none"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   required
@@ -99,7 +102,7 @@ export function Contact() {
                   rows={4}
                 />
               </div>
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full rounded-none">
                 Send Message
               </Button>
             </form>

@@ -80,7 +80,7 @@ export function AboutUs() {
           <h3 className="text-2xl font-semibold mb-6 text-center">Our Core Values</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {coreValues.map((value, index) => (
-              <div key={index} className="bg-card rounded-lg p-6 shadow-md">
+              <div key={index} className="bg-card p-6 shadow-md">
                 <h4 className="text-xl font-semibold mb-2">{value.title}</h4>
                 <p className="text-muted-foreground">{value.description}</p>
               </div>
