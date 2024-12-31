@@ -1,6 +1,8 @@
 import { ArtistsShowcase } from '../components/ArtistShowcase';
+import { ClientCare } from '../components/ClientCare';
 import Hero from '../components/Hero';
 import { StudioPortfolio } from '../components/StudioPortfolio';
+
 export default function Home() {
   return (
     <div>
@@ -8,6 +10,7 @@ export default function Home() {
         <Hero />
         <ArtistsShowcase />
         <StudioPortfolio />
+        <ClientCare />
       </main>
     </div>
   );
