@@ -27,8 +27,8 @@ export default function Hero() {
               </Button>
               <Button
                 asChild
-                variant="link"
-                className="text-base font-normal text-foreground"
+                variant="outline" 
+                className="w-full sm:w-auto rounded-none px-8 py-6 text-base font-normal text-foreground border border-foreground"
               >
                 <Link href="/portfolio">View Our Work</Link>
               </Button>
