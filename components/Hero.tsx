@@ -24,7 +24,7 @@ export default function Hero() {
                 asChild
                 className="w-full sm:w-auto rounded-none bg-primary px-8 py-6 text-base font-normal text-primary-foreground hover:bg-primary/90"
               >
-                <Link href="/booking">Book Consultation</Link>
+                <Link href="/booking">Book Appointment</Link>
               </Button>
               <Button
                 asChild
