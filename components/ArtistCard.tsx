@@ -34,7 +34,7 @@ export function ArtistCard({ name, specialty, image, portfolio }: ArtistCardProp
           <Button
             asChild
             variant="outline"
-            className="sm:w-auto rounded-none px-8 text-foreground border border-foreground"
+            className="rounded-none text-foreground border border-foreground"
           >
             <Link
               href={`/artists/${name.toLowerCase().replace(' ', '-')}`}

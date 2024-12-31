@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
-import Link from "next/link"
+import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Hero() {
   return (
@@ -16,7 +16,8 @@ export default function Hero() {
               <span className="block">Artistry in Ink</span>
             </h1>
             <p className="mt-6 max-w-xl text-base lg:text-lg leading-relaxed text-muted-foreground">
-              Experience the perfect blend of artistic vision and technical precision. Our studio brings your ideas to life with unparalleled attention to detail.
+              Experience the perfect blend of artistic vision and technical precision. Our studio
+              brings your ideas to life with unparalleled attention to detail.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-x-6">
               <Button
@@ -27,7 +28,7 @@ export default function Hero() {
               </Button>
               <Button
                 asChild
-                variant="outline" 
+                variant="outline"
                 className="w-full sm:w-auto rounded-none px-8 py-6 text-base font-normal text-foreground border border-foreground"
               >
                 <Link href="/portfolio">View Our Work</Link>
@@ -36,9 +37,15 @@ export default function Hero() {
           </div>
         </div>
         <div className="relative lg:order-last order-first">
-          <Image src="/tattoo-studio-hero.jpg" alt="Tattoo studio interior" width={1000} height={1000} className="w-full h-full object-cover" />
+          <Image
+            src="/tattoo-studio-hero.jpg"
+            alt="Tattoo studio interior"
+            width={1000}
+            height={1000}
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
     </section>
-  )
+  );
 }
