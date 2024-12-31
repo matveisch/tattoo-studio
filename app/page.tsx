@@ -1,4 +1,5 @@
 import { AboutUs } from '@/components/AboutUs';
+import { Contact } from '@/components/Contact';
 import { ArtistsShowcase } from '../components/ArtistShowcase';
 import { ClientCare } from '../components/ClientCare';
 import Hero from '../components/Hero';
@@ -13,6 +14,7 @@ export default function Home() {
         <StudioPortfolio />
         <ClientCare />
         <AboutUs />
+        <Contact />
       </main>
     </div>
   );
