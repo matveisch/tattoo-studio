@@ -9,7 +9,7 @@ import { AlertCircle, Loader2, Upload, PhoneIcon as WhatsappIcon } from 'lucide-
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
 
-export function Loader() {
+function Loader() {
   return (
     <div className="flex min-h-[400px] w-full items-center justify-center">
       <Loader2 className="h-8 w-8 animate-spin text-primary" />
