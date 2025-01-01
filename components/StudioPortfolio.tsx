@@ -99,13 +99,13 @@ export function StudioPortfolio() {
               </DialogTrigger>
               <DialogContent className="max-w-3xl h-full">
                 {selectedItem && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-4">
                     <Image
                       src={selectedItem.image}
                       alt={`Tattoo by ${selectedItem.artist}`}
                       width={300}
                       height={300}
-                      className="shadow-md w-full h-full object-cover"
+                      className="shadow-md w-full h-full object-contain"
                     />
                     <div className="flex flex-col justify-center">
                       <DialogTitle className="text-2xl font-semibold mb-2">
