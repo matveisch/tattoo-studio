@@ -5,11 +5,19 @@ import { Calendar } from '@/components/ui/calendar';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { AlertCircle, Upload, PhoneIcon as WhatsappIcon } from 'lucide-react';
+import { AlertCircle, Loader2, Upload, PhoneIcon as WhatsappIcon } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
-export default function AppointmentBooking() {
+export function Loader() {
+  return (
+    <div className="flex min-h-[400px] w-full items-center justify-center">
+      <Loader2 className="h-8 w-8 animate-spin text-primary" />
+    </div>
+  );
+}
+
+function BookingForm() {
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [file, setFile] = useState<File | null>(null);
   const [tattooIdea, setTattooIdea] = useState('');
@@ -182,5 +190,13 @@ export default function AppointmentBooking() {
         </div>
       </div>
     </section>
+  );
+}
+
+export default function AppointmentBooking() {
+  return (
+    <Suspense fallback={<Loader />}>
+      <BookingForm />
+    </Suspense>
   );
 }
