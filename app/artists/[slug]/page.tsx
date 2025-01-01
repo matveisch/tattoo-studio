@@ -55,9 +55,6 @@ export default function ArtistPage({ params }: { params: { slug: string } }) {
                 <Link href={`/booking?artist=${encodeURIComponent(artist.name)}`}>Book Now</Link>
               </Button>
               <Button variant="outline" asChild className="rounded-none border-foreground">
-                <a href={`mailto:${artist.email}`}>Contact</a>
-              </Button>
-              <Button variant="outline" asChild className="rounded-none border-foreground">
                 <a href={artist.instagram} target="_blank" rel="noopener noreferrer">
                   Instagram
                 </a>

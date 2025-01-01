@@ -26,13 +26,6 @@ export default function Hero() {
               >
                 <Link href="/booking">Book Appointment</Link>
               </Button>
-              <Button
-                asChild
-                variant="outline"
-                className="w-full sm:w-auto rounded-none px-8 py-6 text-base font-normal text-foreground border border-foreground"
-              >
-                <Link href="/portfolio">View Our Work</Link>
-              </Button>
             </div>
           </div>
         </div>
