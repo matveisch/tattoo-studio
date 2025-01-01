@@ -10,6 +10,8 @@ export function Contact() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
+  // minor comment
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Here you would typically handle the form submission,
