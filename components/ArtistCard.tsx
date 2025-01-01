@@ -44,7 +44,7 @@ export function ArtistCard({ name, specialty, image, portfolio }: ArtistCardProp
             </Link>
           </Button>
           <Button asChild className="rounded-none">
-            <Link href={`/booking/${name.toLowerCase().replace(' ', '-')}`}>Book Now</Link>
+            <Link href={`/booking?artist=${encodeURIComponent(name)}`}>Book Now</Link>
           </Button>
         </div>
       </div>

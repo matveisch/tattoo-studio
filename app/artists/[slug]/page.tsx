@@ -52,7 +52,7 @@ export default function ArtistPage({ params }: { params: { slug: string } }) {
 
             <div className="flex flex-wrap gap-4">
               <Button asChild className="rounded-none">
-                <Link href={`/booking/${params.slug}`}>Book Appointment</Link>
+                <Link href={`/booking?artist=${encodeURIComponent(artist.name)}`}>Book Now</Link>
               </Button>
               <Button variant="outline" asChild className="rounded-none border-foreground">
                 <a href={`mailto:${artist.email}`}>Contact</a>

@@ -6,11 +6,21 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { AlertCircle, Upload, PhoneIcon as WhatsappIcon } from 'lucide-react';
-import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function AppointmentBooking() {
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [file, setFile] = useState<File | null>(null);
+  const [tattooIdea, setTattooIdea] = useState('');
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const artist = searchParams.get('artist');
+    if (artist) {
+      setTattooIdea(`Booking request for ${artist}: `);
+    }
+  }, [searchParams]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -33,7 +43,7 @@ export default function AppointmentBooking() {
           <div className="mb-8">
             <h3 className="mb-4 text-2xl font-semibold text-secondary">How to Book</h3>
             <ol className="list-inside list-decimal space-y-2 text-primary">
-              <li>Choose your preferred city and date</li>
+              <li>Choose your preferred date</li>
               <li>Fill out the booking form with your details and tattoo idea</li>
               <li>Upload a reference picture if you have one</li>
               <li>Submit your request, and we&apos;ll contact you to confirm your appointment</li>
@@ -102,6 +112,8 @@ export default function AppointmentBooking() {
                 </Label>
                 <Textarea
                   id="tattoo-idea"
+                  value={tattooIdea}
+                  onChange={(e) => setTattooIdea(e.target.value)}
                   required
                   className="mt-2 border-secondary focus:border-primary sm:h-[287.2px] sm:resize-none rounded-none"
                 />
