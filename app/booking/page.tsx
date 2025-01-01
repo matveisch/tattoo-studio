@@ -5,7 +5,7 @@ import { Calendar } from '@/components/ui/calendar';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { AlertCircle, Upload } from 'lucide-react';
+import { AlertCircle, Upload, PhoneIcon as WhatsappIcon } from 'lucide-react';
 import { useState } from 'react';
 
 export default function AppointmentBooking() {
@@ -135,6 +135,15 @@ export default function AppointmentBooking() {
 
             <Button type="submit" className="w-full hover:bg-secondary rounded-none">
               Request Booking
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => window.open('https://wa.me/1234567890', '_blank')}
+              className="w-full mt-4 hover:bg-secondary rounded-none"
+            >
+              <WhatsappIcon className="mr-2 h-4 w-4" />
+              Chat on WhatsApp
             </Button>
           </form>
 

@@ -26,7 +26,7 @@ export function ArtistCard({ name, specialty, image, portfolio }: ArtistCardProp
               alt={`${name}'s work ${index + 1}`}
               width={60}
               height={60}
-              className="rounded-sm object-cover"
+              className="object-cover"
             />
           ))}
         </div>

@@ -25,7 +25,7 @@ const coreValues = [
 
 export function AboutUs() {
   return (
-    <section className="py-16 bg-background w-full">
+    <section className="py-16 bg-background w-full" id="about">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-center">About Us</h2>
 

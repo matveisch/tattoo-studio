@@ -1,33 +1,49 @@
-"use client"
+'use client';
 
-import { Button } from '@/components/ui/button'
-import { Menu, X } from 'lucide-react'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { Button } from '@/components/ui/button';
+import { Menu, X } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const navItems = [
-    { href: '/about', label: 'About', isButton: false },
-    { href: '/services', label: 'Services', isButton: false },
-    { href: '/gallery', label: 'Gallery', isButton: false },
-    { href: '/contact', label: 'Contact', isButton: true }
-  ]
+    { href: '/#artists', label: 'Artists', isButton: false },
+    { href: '/#portfolio', label: 'Portfolio', isButton: false },
+    { href: '/#client-care', label: 'Client Care', isButton: false },
+    { href: '/#about', label: 'About', isButton: false },
+    { href: '/#contact', label: 'Contact', isButton: false },
+    { href: '/booking', label: 'Book Now', isButton: true },
+  ];
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   useEffect(() => {
     if (isMenuOpen) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = 'unset';
     }
 
     return () => {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMenuOpen]);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (pathname === '/' && href.startsWith('/#')) {
+      e.preventDefault();
+      const targetId = href.replace('/#', '');
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+        setIsMenuOpen(false);
+      }
     }
-  }, [isMenuOpen])
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">
@@ -45,7 +61,11 @@ export function Header() {
                       <Link href={item.href}>{item.label}</Link>
                     </Button>
                   ) : (
-                    <Link href={item.href} className="text-foreground hover:text-foreground/80">
+                    <Link
+                      href={item.href}
+                      className="text-foreground hover:text-foreground/80"
+                      onClick={(e) => handleNavClick(e, item.href)}
+                    >
                       {item.label}
                     </Link>
                   )}
@@ -68,7 +88,9 @@ export function Header() {
       {/* Mobile menu */}
       <div
         className={`fixed inset-0 z-50 bg-background md:hidden transition-all duration-300 ease-in-out ${
-          isMenuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full pointer-events-none'
+          isMenuOpen
+            ? 'opacity-100 translate-x-0'
+            : 'opacity-0 translate-x-full pointer-events-none'
         }`}
       >
         <div className="flex flex-col bg-background h-screen">
@@ -76,12 +98,7 @@ export function Header() {
             <Link href="/" className="text-xl font-semibold text-foreground" onClick={toggleMenu}>
               Tattoo Studio
             </Link>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleMenu}
-              aria-label="Close menu"
-            >
+            <Button variant="ghost" size="icon" onClick={toggleMenu} aria-label="Close menu">
               <X className="h-6 w-6" />
             </Button>
           </div>
@@ -90,14 +107,23 @@ export function Header() {
               {navItems.map((item) => (
                 <li key={item.href} className="text-center">
                   {item.isButton ? (
-                    <Button asChild variant="outline" size="lg" className="w-full" onClick={toggleMenu}>
+                    <Button
+                      asChild
+                      variant="outline"
+                      size="lg"
+                      className="w-full"
+                      onClick={toggleMenu}
+                    >
                       <Link href={item.href}>{item.label}</Link>
                     </Button>
                   ) : (
                     <Link
                       href={item.href}
                       className="text-foreground hover:text-foreground/80 text-2xl"
-                      onClick={toggleMenu}
+                      onClick={(e) => {
+                        handleNavClick(e, item.href);
+                        toggleMenu();
+                      }}
                     >
                       {item.label}
                     </Link>
@@ -109,5 +135,5 @@ export function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }

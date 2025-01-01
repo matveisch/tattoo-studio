@@ -66,7 +66,7 @@ export function StudioPortfolio() {
   const [selectedItem, setSelectedItem] = useState<(typeof portfolioItems)[0] | null>(null);
 
   return (
-    <section className="py-16 bg-background w-full">
+    <section className="py-16 bg-background w-full" id="portfolio">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-center">Our Portfolio</h2>
         <div className="max-w-3xl mx-auto text-center mb-12">

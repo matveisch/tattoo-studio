@@ -23,7 +23,7 @@ export function Contact() {
   };
 
   return (
-    <section className="py-16 bg-background w-full">
+    <section className="py-16 bg-background w-full" id="contact">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-center">Contact Us</h2>
         <div className="grid md:grid-cols-2 gap-8">
