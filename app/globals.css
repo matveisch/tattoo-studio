@@ -14,31 +14,50 @@ body {
 
 @layer base {
   :root {
-    /* Main colors */
-    --background: 39 15% 91%; /* #EDEAE3 */
-    --foreground: 0 0% 17%; /* #2B2B2B */
-    --card: 39 15% 91%; /* Same as background */
-    --card-foreground: 0 0% 17%; /* Same as foreground */
-    --popover: 39 15% 91%; /* Same as background */
-    --popover-foreground: 0 0% 17%; /* Same as foreground */
-    --primary: 0 0% 10%; /* #1A1A1A */
-    --primary-foreground: 0 0% 100%; /* #FFFFFF */
-    --secondary: 0 0% 20%; /* #333333 */
-    --secondary-foreground: 0 0% 100%; /* #FFFFFF */
-    --muted: 39 15% 95%; /* Lighter version of background */
-    --muted-foreground: 25 5.3% 44.7%;
-    --accent: 0 0% 20%; /* #333333 */
-    --accent-foreground: 0 0% 100%; /* #FFFFFF */
+    /* Main backgrounds using lighter palette */
+    --background: 73 31% 89%; /* #EFF3EA - Main background */
+    --foreground: 90 15% 31%; /* #4B5945 - Main text */
+
+    /* Card styles */
+    --card: 60 100% 97%; /* #FFFDF0 - Card background */
+    --card-foreground: 90 15% 31%; /* #4B5945 - Card text */
+
+    /* Popover styles */
+    --popover: 60 100% 97%; /* #FFFDF0 - Popover background */
+    --popover-foreground: 90 15% 31%; /* #4B5945 - Popover text */
+
+    /* Primary colors */
+    --primary: 90 15% 31%; /* #4B5945 - Darkest green */
+    --primary-foreground: 73 31% 89%; /* #EFF3EA - Light text on dark */
+
+    /* Secondary colors */
+    --secondary: 120 14% 44%; /* #66785F - Second darkest green */
+    --secondary-foreground: 60 100% 97%; /* #FFFDF0 - Light text on dark */
+
+    /* Muted variants */
+    --muted: 82 28% 82%; /* #D9DFC6 - Muted background */
+    --muted-foreground: 120 14% 44%; /* #66785F - Muted text */
+
+    /* Accent colors */
+    --accent: 120 17% 62%; /* #91AC8F - Medium green */
+    --accent-foreground: 60 100% 97%; /* #FFFDF0 - Light text on accent */
+
+    /* Maintaining destructive */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 60 9.1% 97.8%;
-    --border: 39 15% 85%; /* Slightly darker than background */
-    --input: 39 15% 85%; /* Same as border */
-    --ring: 0 0% 17%; /* Same as foreground */
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+
+    /* Border and input styles */
+    --border: 48 100% 88%; /* #FFF2C2 - Warm border color */
+    --input: 48 100% 88%; /* #FFF2C2 - Input borders */
+    --ring: 120 17% 62%; /* #91AC8F - Focus rings */
+
+    /* Chart colors - Updated to match new palette */
+    --chart-1: 90 15% 31%; /* #4B5945 */
+    --chart-2: 120 14% 44%; /* #66785F */
+    --chart-3: 120 17% 62%; /* #91AC8F */
+    --chart-4: 120 19% 74%; /* #B2C9AD */
+    --chart-5: 48 100% 88%; /* #FFF2C2 */
+
     --radius: 0.5rem;
   }
   .dark {

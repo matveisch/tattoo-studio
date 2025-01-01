@@ -61,7 +61,7 @@ export function Contact() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
-                  className="rounded-none"
+                  className="rounded-none border-secondary"
                   placeholder="Your Name"
                 />
               </div>
@@ -75,7 +75,7 @@ export function Contact() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="rounded-none"
+                  className="rounded-none border-secondary"
                   placeholder="your@email.com"
                 />
               </div>
@@ -85,7 +85,7 @@ export function Contact() {
                 </label>
                 <Textarea
                   id="message"
-                  className="rounded-none"
+                  className="rounded-none border-secondary"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   required
@@ -96,7 +96,7 @@ export function Contact() {
               <Button type="submit" className="w-full rounded-none">
                 Send Message
               </Button>
-              <Button className="w-full rounded-none" asChild variant="outline">
+              <Button className="w-full rounded-none border-secondary" asChild variant="outline">
                 <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

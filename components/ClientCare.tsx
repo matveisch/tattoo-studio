@@ -18,7 +18,7 @@ export function ClientCare() {
         </p>
 
         <div className="grid md:grid-cols-2 gap-8">
-          <Card className="rounded-none">
+          <Card className="rounded-none border-secondary">
             <CardHeader>
               <CardTitle>Our Hygiene Standards</CardTitle>
               <CardDescription>We prioritize your safety above all else</CardDescription>
@@ -36,14 +36,14 @@ export function ClientCare() {
             </CardContent>
           </Card>
 
-          <Card className="rounded-none">
+          <Card className="rounded-none border-secondary">
             <CardHeader>
               <CardTitle>Basic Aftercare</CardTitle>
               <CardDescription>Follow these steps for optimal healing</CardDescription>
             </CardHeader>
             <CardContent>
               <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="item-1">
+                <AccordionItem value="item-1" className="border-secondary">
                   <AccordionTrigger>First 24 Hours</AccordionTrigger>
                   <AccordionContent>
                     <ul className="list-disc pl-5 space-y-2">
@@ -54,7 +54,7 @@ export function ClientCare() {
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
-                <AccordionItem value="item-2">
+                <AccordionItem value="item-2" className="border-secondary">
                   <AccordionTrigger>Days 2-14</AccordionTrigger>
                   <AccordionContent>
                     <ul className="list-disc pl-5 space-y-2">
@@ -66,7 +66,7 @@ export function ClientCare() {
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
-                <AccordionItem value="item-3">
+                <AccordionItem value="item-3" className="border-secondary">
                   <AccordionTrigger>Long-term Care</AccordionTrigger>
                   <AccordionContent>
                     <ul className="list-disc pl-5 space-y-2">

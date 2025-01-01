@@ -57,7 +57,7 @@ export function Header() {
               {navItems.map((item) => (
                 <li key={item.href} className="flex items-center">
                   {item.isButton ? (
-                    <Button asChild variant="outline" size="sm">
+                    <Button asChild variant="outline" size="sm" className="border-secondary">
                       <Link href={item.href}>{item.label}</Link>
                     </Button>
                   ) : (

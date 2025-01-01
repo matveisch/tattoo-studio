@@ -160,7 +160,7 @@ function BookingForm() {
               type="button"
               variant="outline"
               onClick={() => window.open('https://wa.me/1234567890', '_blank')}
-              className="w-full mt-4 hover:bg-secondary rounded-none"
+              className="w-full mt-4 hover:bg-secondary rounded-none border-secondary"
             >
               <WhatsappIcon className="mr-2 h-4 w-4" />
               Chat on WhatsApp

@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export function Footer() {
   return (
-    <footer className="bg-background border-t">
+    <footer className="bg-background border-t border-secondary">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
@@ -86,7 +86,7 @@ export function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
+        <div className="-mx-4 mt-8 pt-8 border-t border-secondary text-center text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} Tattoo Studio. All rights reserved.</p>
         </div>
       </div>
