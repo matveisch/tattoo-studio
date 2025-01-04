@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -23,7 +24,49 @@ const artistData = {
   },
 };
 
-export default function ArtistPage({ params }: { params: { slug: string } }) {
+type ArtistParams = {
+  params: { slug: string };
+};
+
+export async function generateMetadata({ params }: ArtistParams): Promise<Metadata> {
+  const artist = artistData[params.slug as keyof typeof artistData];
+
+  if (!artist) {
+    return {
+      title: 'Artist Not Found',
+    };
+  }
+
+  return {
+    title: `${artist.name} - ${artist.specialty}`,
+    description: `Discover the unique tattoo artistry of ${artist.name}, specializing in ${artist.specialty}. View portfolio and book your session today.`,
+    openGraph: {
+      title: `${artist.name} | Tattoo Artist at Tattoo Studio`,
+      description: `Explore ${artist.name}'s portfolio of ${artist.specialty} tattoos. Book your custom tattoo session with this talented artist today.`,
+      url: `https://www.tattoostudio.com/artists/${params.slug}`,
+      siteName: 'Tattoo Studio',
+      images: [
+        {
+          url: artist.image,
+          width: 300,
+          height: 400,
+          alt: `${artist.name} - Tattoo Artist`,
+        },
+      ],
+      locale: 'en_US',
+      type: 'profile',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${artist.name} | Tattoo Artist Specializing in ${artist.specialty}`,
+      description: `Discover ${artist.name}'s unique tattoo style and book your custom tattoo session at Tattoo Studio.`,
+      images: [artist.image],
+      creator: '@TattooStudio',
+    },
+  };
+}
+
+export default function ArtistPage({ params }: ArtistParams) {
   const artist = artistData[params.slug as keyof typeof artistData];
 
   if (!artist) {
