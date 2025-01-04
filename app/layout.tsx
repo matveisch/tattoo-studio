@@ -32,6 +32,10 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  metadataBase: new URL('https://www.tattoostudio.com'),
+  alternates: {
+    canonical: '/',
+  },
 };
 
 export default function RootLayout({
