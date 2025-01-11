@@ -18,15 +18,15 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Tattoo Studio | Premium Tattoo Artistry',
-    template: '%s | Tattoo Studio',
+    default: 'La Rosel Tattoo Atelier | Erstklassige Tätowierkunst',
+    template: '%s | La Rosel Tattoo Atelier',
   },
   description:
-    'Premium tattoo studio offering expert artistry and a wide range of styles. Book your consultation today.',
-  keywords: ['tattoo', 'tattoo studio', 'body art', 'ink', 'tattoo artist'],
-  authors: [{ name: 'Tattoo Studio Team' }],
-  creator: 'Tattoo Studio',
-  publisher: 'Tattoo Studio',
+    'Premium Tattoo Studio mit erstklassiger Handwerkskunst und einer großen Auswahl an Stilen. Buchen Sie noch heute Ihre Beratung.',
+  keywords: ['tätowierung', 'tattoo studio', 'körperkunst', 'tinte', 'tätowierer'],
+  authors: [{ name: 'La Rosel Tattoo Atelier' }],
+  creator: 'La Rosel Tattoo Atelier',
+  publisher: 'La Rosel Tattoo Atelier',
   formatDetection: {
     email: false,
     address: false,
@@ -44,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="de">
       <head>
         <StructuredData />
       </head>

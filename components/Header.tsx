@@ -50,7 +50,7 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="text-xl font-semibold text-foreground">
-            Tattoo Studio
+            La Rosel Tattoo Atelier
           </Link>
           <nav className="hidden md:block">
             <ul className="flex space-x-4">
