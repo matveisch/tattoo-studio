@@ -13,7 +13,7 @@ export function ArtistCard({ name, specialty, image, portfolio }: ArtistCardProp
   return (
     <div className="bg-card overflow-hidden shadow-md">
       <div className="relative h-64">
-        <Image src={image} alt={name} fill className="object-cover" />
+        <Image src={image} alt={`${name} - Tätowierer`} fill className="object-cover" />
       </div>
       <div className="p-6">
         <h3 className="text-2xl font-semibold mb-2">{name}</h3>
@@ -23,7 +23,7 @@ export function ArtistCard({ name, specialty, image, portfolio }: ArtistCardProp
             <Image
               key={index}
               src={item}
-              alt={`${name}'s work ${index + 1}`}
+              alt={`${name}'s Arbeit ${index + 1}`}
               width={60}
               height={60}
               className="object-cover"
@@ -40,11 +40,11 @@ export function ArtistCard({ name, specialty, image, portfolio }: ArtistCardProp
               href={`/artists/${name.toLowerCase().replace(' ', '-')}`}
               className="text-primary"
             >
-              View Full Portfolio
+              Portfolio Ansehen
             </Link>
           </Button>
           <Button asChild className="rounded-none">
-            <Link href={`/booking?artist=${encodeURIComponent(name)}`}>Book Now</Link>
+            <Link href={`/booking?artist=${encodeURIComponent(name)}`}>Jetzt Buchen</Link>
           </Button>
         </div>
       </div>

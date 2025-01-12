@@ -8,8 +8,8 @@ import { notFound } from 'next/navigation';
 const artistData = {
   'alex-johnson': {
     name: 'Alex Johnson',
-    specialty: 'Black & Grey Realism',
-    bio: 'Alex Johnson is a master of Black & Grey Realism with over 10 years of experience. His attention to detail and ability to capture lifelike images has earned him numerous awards and a loyal client base.',
+    specialty: 'Schwarz & Grau Realismus',
+    bio: 'Alex Johnson ist ein Meister des Schwarz & Grau Realismus mit über 10 Jahren Erfahrung. Seine Liebe zum Detail und die Fähigkeit, lebensechte Bilder zu erschaffen, haben ihm zahlreiche Auszeichnungen und eine treue Kundschaft eingebracht.',
     image: '/tattoo-artist.jpeg',
     portfolio: [
       '/tattoo.jpeg',
@@ -33,35 +33,28 @@ export async function generateMetadata({ params }: ArtistParams): Promise<Metada
 
   if (!artist) {
     return {
-      title: 'Artist Not Found',
+      title: 'Künstler nicht gefunden',
     };
   }
 
   return {
     title: `${artist.name} - ${artist.specialty}`,
-    description: `Discover the unique tattoo artistry of ${artist.name}, specializing in ${artist.specialty}. View portfolio and book your session today.`,
+    description: `Entdecke die einzigartige Tattookunst von ${artist.name}, spezialisiert auf ${artist.specialty}. Sieh dir das Portfolio an und buche noch heute deinen Termin.`,
     openGraph: {
-      title: `${artist.name} | Tattoo Artist at Tattoo Studio`,
-      description: `Explore ${artist.name}'s portfolio of ${artist.specialty} tattoos. Book your custom tattoo session with this talented artist today.`,
-      url: `https://www.tattoostudio.com/artists/${params.slug}`,
-      siteName: 'Tattoo Studio',
+      title: `${artist.name} | Tätowierer bei La Rosel Tattoo Atelier`,
+      description: `Entdecke ${artist.name}'s Portfolio mit ${artist.specialty} Tätowierungen. Buche noch heute deinen individuellen Termin bei diesem talentierten Künstler.`,
+      url: `https://www.laroseltattoo.com/artists/${params.slug}`,
+      siteName: 'La Rosel Tattoo Atelier',
       images: [
         {
           url: artist.image,
           width: 300,
           height: 400,
-          alt: `${artist.name} - Tattoo Artist`,
+          alt: `${artist.name} - Tätowierer`,
         },
       ],
-      locale: 'en_US',
+      locale: 'de_DE',
       type: 'profile',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${artist.name} | Tattoo Artist Specializing in ${artist.specialty}`,
-      description: `Discover ${artist.name}'s unique tattoo style and book your custom tattoo session at Tattoo Studio.`,
-      images: [artist.image],
-      creator: '@TattooStudio',
     },
   };
 }
@@ -95,7 +88,9 @@ export default function ArtistPage({ params }: ArtistParams) {
 
             <div className="flex flex-wrap gap-4">
               <Button asChild className="rounded-none">
-                <Link href={`/booking?artist=${encodeURIComponent(artist.name)}`}>Book Now</Link>
+                <Link href={`/booking?artist=${encodeURIComponent(artist.name)}`}>
+                  Jetzt Buchen
+                </Link>
               </Button>
               <Button variant="outline" asChild className="rounded-none border-foreground">
                 <a href={artist.instagram} target="_blank" rel="noopener noreferrer">
@@ -111,7 +106,7 @@ export default function ArtistPage({ params }: ArtistParams) {
             <Image
               key={index}
               src={item}
-              alt={`${artist.name}'s work ${index + 1}`}
+              alt={`${artist.name}'s Arbeit ${index + 1}`}
               width={400}
               height={600}
               className="shadow-md hover:shadow-lg transition-shadow duration-300"
