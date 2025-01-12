@@ -20,7 +20,6 @@ const artistData = {
       '/tattoo.jpeg',
     ],
     instagram: 'https://instagram.com/alexjohnson',
-    email: 'alex@tattoostudio.com',
   },
 };
 
