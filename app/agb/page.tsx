@@ -18,8 +18,8 @@ export default function AGBPage() {
           <h2 className="text-2xl font-semibold mb-4">1. Geltungsbereich</h2>
           <p>
             Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Leistungen und Tätigkeiten,
-            die von La Rosel Tattoo Atelier (im Folgenden "Studio") erbracht werden. Mit der
-            Terminvereinbarung erkennt der Kunde diese AGB an.
+            die von La Rosel Tattoo Atelier (im Folgenden &quot;Studio&quot;) erbracht werden. Mit
+            der Terminvereinbarung erkennt der Kunde diese AGB an.
           </p>
         </section>
 
