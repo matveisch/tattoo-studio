@@ -16,49 +16,49 @@ const portfolioItems = [
     id: 1,
     image: '/tattoo.jpeg',
     artist: 'Alex Johnson',
-    style: 'Black & Grey Realism',
+    style: 'Schwarz & Grau Realismus',
   },
   {
     id: 2,
     image: '/tattoo.jpeg',
     artist: 'Sam Lee',
-    style: 'Japanese Traditional',
+    style: 'Japanischer Traditioneller Stil',
   },
   {
     id: 3,
     image: '/tattoo.jpeg',
     artist: 'Maria Garcia',
-    style: 'Colorful Neo-Traditional',
+    style: 'Farbiger Neo-Traditioneller Stil',
   },
   {
     id: 4,
     image: '/tattoo.jpeg',
     artist: 'Alex Johnson',
-    style: 'Black & Grey Realism',
+    style: 'Schwarz & Grau Realismus',
   },
   {
     id: 5,
     image: '/tattoo.jpeg',
     artist: 'Sam Lee',
-    style: 'Japanese Traditional',
+    style: 'Japanischer Traditioneller Stil',
   },
   {
     id: 6,
     image: '/tattoo.jpeg',
     artist: 'Maria Garcia',
-    style: 'Colorful Neo-Traditional',
+    style: 'Farbiger Neo-Traditioneller Stil',
   },
   {
     id: 7,
     image: '/tattoo.jpeg',
     artist: 'Alex Johnson',
-    style: 'Black & Grey Realism',
+    style: 'Schwarz & Grau Realismus',
   },
   {
     id: 8,
     image: '/tattoo.jpeg',
     artist: 'Sam Lee',
-    style: 'Japanese Traditional',
+    style: 'Japanischer Traditioneller Stil',
   },
 ];
 
@@ -68,12 +68,13 @@ export function StudioPortfolio() {
   return (
     <section className="py-16 bg-background w-full" id="portfolio">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-center">Our Portfolio</h2>
+        <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-center">Unser Portfolio</h2>
         <div className="max-w-3xl mx-auto text-center mb-12">
           <p className="text-lg text-muted-foreground mb-4">
-            Explore our diverse collection of tattoo artistry, showcasing the unique talents and
-            styles of our skilled artists. From intricate designs to bold statements, our portfolio
-            reflects our commitment to quality and creativity.
+            Entdecke unsere vielfältige Sammlung an Tattoo-Kunst, die das einzigartige Talent und
+            die verschiedenen Stile unserer erfahrenen Künstler präsentiert. Von filigranen Designs
+            bis hin zu ausdrucksstarken Statements spiegelt unser Portfolio unser Engagement für
+            Qualität und Kreativität wider.
           </p>
         </div>
 
@@ -84,7 +85,7 @@ export function StudioPortfolio() {
                 <button className="relative group" onClick={() => setSelectedItem(item)}>
                   <Image
                     src={item.image}
-                    alt={`Tattoo by ${item.artist}`}
+                    alt={`Tattoo von ${item.artist}`}
                     width={400}
                     height={600}
                     className="shadow-md transition-transform duration-300 group-hover:scale-105"
@@ -102,7 +103,7 @@ export function StudioPortfolio() {
                   <div className="grid grid-cols-1 gap-4">
                     <Image
                       src={selectedItem.image}
-                      alt={`Tattoo by ${selectedItem.artist}`}
+                      alt={`Tattoo von ${selectedItem.artist}`}
                       width={300}
                       height={300}
                       className="shadow-md w-full h-full object-contain"
@@ -116,7 +117,7 @@ export function StudioPortfolio() {
                       </DialogDescription>
                       <Button asChild>
                         <a href={`/artists/${selectedItem.artist.toLowerCase().replace(' ', '-')}`}>
-                          View Artist Profile
+                          Künstlerprofil ansehen
                         </a>
                       </Button>
                     </div>
