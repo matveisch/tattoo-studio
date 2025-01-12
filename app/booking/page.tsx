@@ -4,24 +4,24 @@ import { Metadata } from 'next';
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
-  title: 'Book Your Tattoo Session',
+  title: 'Buche Deine Tattoo-Sitzung',
   description:
-    'Schedule your tattoo appointment with our expert artists. Choose your preferred date, describe your tattoo idea, and start your journey to getting inked.',
+    'Vereinbare deinen Tattoo-Termin mit unseren erfahrenen Künstlern. Wähle deinen Wunschtermin, beschreibe deine Tattoo-Idee und starte deine Reise zum Wunsch-Tattoo.',
   openGraph: {
-    title: 'Book Your Tattoo Session | Tattoo Studio',
+    title: 'Tattoo-Termin Buchen | La Rosel Tattoo Atelier',
     description:
-      'Ready for your next tattoo? Book an appointment with our skilled artists at Tattoo Studio. Describe your idea and choose a date that works for you.',
-    url: 'https://www.tattoostudio.com/booking',
-    siteName: 'Tattoo Studio',
+      'Bereit für dein nächstes Tattoo? Buche einen Termin mit unseren talentierten Künstlern im La Rosel Tattoo Atelier. Beschreibe deine Idee und wähle einen passenden Termin.',
+    url: 'https://www.laroseltattoo.com/booking',
+    siteName: 'La Rosel Tattoo Atelier',
     images: [
       {
-        url: 'https://www.tattoostudio.com/booking-og-image.jpg',
+        url: 'https://www.laroseltattoo.com/booking-og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Tattoo Studio Booking Page',
+        alt: 'La Rosel Tattoo Atelier Buchungsseite',
       },
     ],
-    locale: 'en_US',
+    locale: 'de_DE',
     type: 'website',
   },
 };
@@ -36,8 +36,15 @@ function Loader() {
 
 export default function AppointmentBooking() {
   return (
-    <Suspense fallback={<Loader />}>
-      <BookingForm />
-    </Suspense>
+    <div className="min-h-screen bg-background pt-16">
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold mb-8 text-center">Buche Deinen Termin</h1>
+        <div className="max-w-2xl mx-auto">
+          <Suspense fallback={<Loader />}>
+            <BookingForm />
+          </Suspense>
+        </div>
+      </div>
+    </div>
   );
 }
