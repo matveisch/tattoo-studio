@@ -26,8 +26,8 @@ export function ArtistForm({ onSubmit, initialData }: ArtistFormProps) {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    let profileImageUrl = initialData?.profile_image;
-    let portfolioImageUrls = initialData?.portfolio || [];
+    let profileImageUrl = initialData?.image;
+    const portfolioImageUrls = initialData?.portfolio || [];
 
     if (profileImage) {
       const { data, error } = await supabase.storage
@@ -58,7 +58,7 @@ export function ArtistForm({ onSubmit, initialData }: ArtistFormProps) {
       style,
       bio,
       instagram,
-      profile_image: profileImageUrl,
+      image: profileImageUrl,
       portfolio: portfolioImageUrls,
     });
 
