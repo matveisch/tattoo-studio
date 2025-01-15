@@ -3,11 +3,12 @@
 import { ArtistForm } from '@/components/ArtistForm';
 import { ArtistList } from '@/components/ArtistList';
 import { supabase } from '@/lib/supabase';
+import { Tables } from '@/utils/supabase/supabase';
 import { useEffect, useState } from 'react';
 
 export default function AdminPage() {
-  const [artists, setArtists] = useState<any[]>([]);
-  const [editingArtist, setEditingArtist] = useState<any | null>(null);
+  const [artists, setArtists] = useState<Tables<'artists'>[]>([]);
+  const [editingArtist, setEditingArtist] = useState<Tables<'artists'> | null>(null);
 
   useEffect(() => {
     fetchArtists();
@@ -25,8 +26,8 @@ export default function AdminPage() {
     }
   }
 
-  async function handleAddArtist(artistData: any) {
-    const { data, error } = await supabase.from('artists').insert([artistData]).select();
+  async function handleAddArtist(artistData: Omit<Tables<'artists'>, 'id'>) {
+    const { error } = await supabase.from('artists').insert([artistData]).select();
 
     if (error) {
       console.error('Error adding artist:', error);
@@ -35,7 +36,7 @@ export default function AdminPage() {
     }
   }
 
-  async function handleUpdateArtist(id: string, artistData: any) {
+  async function handleUpdateArtist(id: number, artistData: Omit<Tables<'artists'>, 'id'>) {
     const { error } = await supabase.from('artists').update(artistData).eq('id', id);
 
     if (error) {
@@ -46,7 +47,7 @@ export default function AdminPage() {
     }
   }
 
-  async function handleDeleteArtist(id: string) {
+  async function handleDeleteArtist(id: number) {
     const { error } = await supabase.from('artists').delete().eq('id', id);
 
     if (error) {

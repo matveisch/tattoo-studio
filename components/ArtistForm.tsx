@@ -1,9 +1,10 @@
 import { supabase } from '@/lib/supabase';
+import { Tables } from '@/utils/supabase/supabase';
 import { useEffect, useState } from 'react';
 
 interface ArtistFormProps {
-  onSubmit: (data: any) => void;
-  initialData?: any;
+  onSubmit: (data: Omit<Tables<'artists'>, 'id'>) => void;
+  initialData?: Tables<'artists'> | null;
 }
 
 export function ArtistForm({ onSubmit, initialData }: ArtistFormProps) {
@@ -58,7 +59,7 @@ export function ArtistForm({ onSubmit, initialData }: ArtistFormProps) {
       style,
       bio,
       instagram,
-      image: profileImageUrl,
+      image: profileImageUrl ?? '',
       portfolio: portfolioImageUrls,
     });
 
