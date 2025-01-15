@@ -1,54 +1,86 @@
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Tables } from '@/utils/supabase/supabase';
-import { ArtistCard } from './ArtistCard';
+import { Instagram, X } from 'lucide-react';
+import Image from 'next/image';
 
 interface ArtistListProps {
   artists: Tables<'artists'>[];
   onEdit: (artist: Tables<'artists'>) => void;
   onDelete: (id: number) => void;
+  onDeleteImage: (artistId: number, imageName: string) => Promise<void>;
 }
 
-export function ArtistList({ artists, onEdit, onDelete }: ArtistListProps) {
+export function ArtistList({ artists, onEdit, onDelete, onDeleteImage }: ArtistListProps) {
   return (
-    <ul className="space-y-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {artists.map((artist) => (
-        <li key={artist.id} className="border p-4 rounded-md">
-          {/* <h3 className="text-lg font-semibold">{artist.name}</h3>
-          {artist.image && (
-            <Image
-              width={50}
-              height={50}
-              src={`https://xrkjikypmvonnjzzswbu.supabase.co/storage/v1/object/public/artist-images/${artist.image}`}
-              alt="artist-image"
-              className="object-cover"
-            />
-          )}
-          <p className="text-sm text-gray-600">
-            {artist.style} – {artist.instagram}
-          </p>
-          <p className="text-sm text-gray-600">{artist.bio}</p> */}
-          <ArtistCard
-            name={artist.name}
-            specialty={artist.style}
-            image={`https://xrkjikypmvonnjzzswbu.supabase.co/storage/v1/object/public/artist-images/${artist.image}`}
-            portfolio={[]}
-          />
-
-          <div className="mt-2 flex space-x-2">
-            <button
-              onClick={() => onEdit(artist)}
-              className="bg-blue-500 text-white px-2 py-1 rounded text-sm"
-            >
+        <Card key={artist.id} className="overflow-hidden">
+          <CardHeader className="pb-0">
+            <div className="flex items-center space-x-4">
+              {artist.image && (
+                <Image
+                  width={80}
+                  height={80}
+                  src={`https://xrkjikypmvonnjzzswbu.supabase.co/storage/v1/object/public/artist-images/${artist.image}`}
+                  alt={`${artist.name}'s profile`}
+                  className="rounded-full object-cover"
+                />
+              )}
+              <div>
+                <h3 className="text-xl font-semibold">{artist.name}</h3>
+                <p className="text-sm text-muted-foreground">{artist.style}</p>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent className="pt-4">
+            <p className="text-sm text-muted-foreground mb-4">{artist.bio}</p>
+            {artist.instagram && (
+              <a
+                href={`https://instagram.com/${artist.instagram}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center text-sm text-blue-500 hover:underline"
+              >
+                <Instagram className="w-4 h-4 mr-1" />@{artist.instagram}
+              </a>
+            )}
+            {artist.portfolio.length > 0 && (
+              <div className="mt-4">
+                <h4 className="text-sm font-semibold mb-2">Portfolio</h4>
+                <div className="grid grid-cols-3 gap-2">
+                  {artist.portfolio.map((image, index) => (
+                    <div key={index} className="relative group">
+                      <Image
+                        width={100}
+                        height={100}
+                        alt={`${artist.name}'s portfolio image ${index + 1}`}
+                        src={`https://xrkjikypmvonnjzzswbu.supabase.co/storage/v1/object/public/artist-images/${image}`}
+                        className="rounded-md object-cover w-full h-24"
+                      />
+                      <button
+                        onClick={() => onDeleteImage(artist.id, image)}
+                        className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                        aria-label={`Delete ${artist.name}'s portfolio image ${index + 1}`}
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </CardContent>
+          <CardFooter className="flex justify-between">
+            <Button variant="outline" onClick={() => onEdit(artist)}>
               Edit
-            </button>
-            <button
-              onClick={() => onDelete(artist.id)}
-              className="bg-red-500 text-white px-2 py-1 rounded text-sm"
-            >
+            </Button>
+            <Button variant="destructive" onClick={() => onDelete(artist.id)}>
               Delete
-            </button>
-          </div>
-        </li>
+            </Button>
+          </CardFooter>
+        </Card>
       ))}
-    </ul>
+    </div>
   );
 }

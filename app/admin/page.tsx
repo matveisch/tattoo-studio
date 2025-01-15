@@ -17,8 +17,6 @@ export default function AdminPage() {
   async function fetchArtists() {
     const { data, error } = await supabase.from('artists').select('*').order('name');
 
-    console.log(data);
-
     if (error) {
       console.error('Error fetching artists:', error);
     } else {
@@ -57,10 +55,39 @@ export default function AdminPage() {
     }
   }
 
+  async function handleDeleteImage(artistId: number, imageUrl: string) {
+    // First, remove the image from storage
+    // todo make it delete images from storage
+    console.log({ imageUrl });
+    const { error: storageError } = await supabase.storage.from('artist-images').remove([imageUrl]);
+
+    if (storageError) {
+      console.error('Error deleting image from storage:', storageError.message);
+      return;
+    }
+
+    // Then, update the artist's portfolio array to remove this image
+    const artist = artists.find((a) => a.id === artistId);
+    if (!artist?.portfolio) return;
+
+    const updatedPortfolio = artist.portfolio.filter((img) => img !== imageUrl);
+
+    const { error: updateError } = await supabase
+      .from('artists')
+      .update({ portfolio: updatedPortfolio })
+      .eq('id', artistId);
+
+    if (updateError) {
+      console.error('Error updating artist portfolio:', updateError);
+    } else {
+      fetchArtists(); // Refresh the list
+    }
+  }
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4 mt-12">Tattoo Artist Admin</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4">
         <div>
           <h2 className="text-xl font-semibold mb-2">
             {editingArtist ? 'Edit Artist' : 'Add New Artist'}
@@ -74,7 +101,12 @@ export default function AdminPage() {
         </div>
         <div>
           <h2 className="text-xl font-semibold mb-2">Artist List</h2>
-          <ArtistList artists={artists} onEdit={setEditingArtist} onDelete={handleDeleteArtist} />
+          <ArtistList
+            artists={artists}
+            onEdit={setEditingArtist}
+            onDelete={handleDeleteArtist}
+            onDeleteImage={handleDeleteImage}
+          />
         </div>
       </div>
     </div>
