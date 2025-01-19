@@ -72,7 +72,16 @@ export function ArtistList({ artists, onEdit, onDelete, onDeleteImage }: ArtistL
             )}
           </CardContent>
           <CardFooter className="flex justify-between">
-            <Button variant="outline" onClick={() => onEdit(artist)}>
+            <Button
+              variant="outline"
+              onClick={() => {
+                onEdit(artist);
+                window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth',
+                });
+              }}
+            >
               Edit
             </Button>
             <Button variant="destructive" onClick={() => onDelete(artist.id)}>
