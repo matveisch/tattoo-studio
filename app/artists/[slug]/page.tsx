@@ -1,7 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 // This would typically come from a database or API
@@ -86,11 +85,11 @@ export default function ArtistPage({ params }: ArtistParams) {
             </div>
 
             <div className="flex flex-wrap gap-4">
-              <Button asChild className="rounded-none">
+              {/* <Button asChild className="rounded-none">
                 <Link href={`/booking?artist=${encodeURIComponent(artist.name)}`}>
                   Jetzt Buchen
                 </Link>
-              </Button>
+              </Button> */}
               <Button variant="outline" asChild className="rounded-none border-foreground">
                 <a href={artist.instagram} target="_blank" rel="noopener noreferrer">
                   Instagram

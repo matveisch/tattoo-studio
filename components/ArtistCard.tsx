@@ -30,11 +30,11 @@ export function ArtistCard({ name, specialty, image, portfolio }: ArtistCardProp
             />
           ))}
         </div>
-        <div className="flex justify-between items-center">
+        <div>
           <Button
             asChild
             variant="outline"
-            className="rounded-none text-foreground border border-foreground"
+            className="rounded-none text-foreground border border-foreground flex"
           >
             <Link
               href={`/artists/${name.toLowerCase().replace(' ', '-')}`}
@@ -43,9 +43,9 @@ export function ArtistCard({ name, specialty, image, portfolio }: ArtistCardProp
               Portfolio Ansehen
             </Link>
           </Button>
-          <Button asChild className="rounded-none">
+          {/* <Button asChild className="rounded-none">
             <Link href={`/booking?artist=${encodeURIComponent(name)}`}>Jetzt Buchen</Link>
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>

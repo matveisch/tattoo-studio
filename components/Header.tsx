@@ -16,7 +16,7 @@ export function Header() {
     { href: '/#client-care', label: 'Kundenbetreuung', isButton: false },
     { href: '/#about', label: 'Über Uns', isButton: false },
     { href: '/#contact', label: 'Kontakt', isButton: false },
-    { href: '/booking', label: 'Jetzt Buchen', isButton: true },
+    // { href: '/booking', label: 'Jetzt Buchen', isButton: true },
   ];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);

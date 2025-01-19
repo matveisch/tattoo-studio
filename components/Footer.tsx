@@ -38,11 +38,11 @@ export function Footer() {
                   Über Uns
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/booking" className="text-sm hover:underline">
                   Jetzt Buchen
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/agb" className="text-sm hover:underline">
                   AGB
