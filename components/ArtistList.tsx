@@ -24,7 +24,7 @@ export function ArtistList({ artists, onEdit, onDelete, onDeleteImage }: ArtistL
                   height={80}
                   src={`https://xrkjikypmvonnjzzswbu.supabase.co/storage/v1/object/public/artist-images/${artist.image}`}
                   alt={`${artist.name}'s profile`}
-                  className="rounded-full object-cover"
+                  className="object-cover rounded-md w-24 h-24"
                 />
               )}
               <div>

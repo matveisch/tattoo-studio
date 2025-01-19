@@ -31,6 +31,7 @@ export function ArtistForm({ onSubmit, initialData }: ArtistFormProps) {
     const portfolioImageUrls = initialData?.portfolio || [];
 
     if (profileImage) {
+      // todo delete previous photo first or second
       const { data, error } = await supabase.storage
         .from('artist-images')
         .upload(`profile/${Date.now()}-${profileImage.name}`, profileImage);

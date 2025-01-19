@@ -46,6 +46,29 @@ export default function AdminPage() {
   }
 
   async function handleDeleteArtist(id: number) {
+    const { data: artist } = (await supabase
+      .from('artists')
+      .select('image, portfolio')
+      .eq('id', id)
+      .single()) as { data: Tables<'artists'> | null };
+
+    if (artist) {
+      // Collect all images to delete (profile image + portfolio)
+      const imagesToDelete = artist.portfolio;
+      imagesToDelete.push(artist.image);
+
+      // Delete images from storage
+      if (artist.portfolio.length > 0) {
+        const { error: storageError } = await supabase.storage
+          .from('artist-images')
+          .remove(imagesToDelete);
+
+        if (storageError) {
+          console.error('Error deleting images:', storageError);
+        }
+      }
+    }
+
     const { error } = await supabase.from('artists').delete().eq('id', id);
 
     if (error) {
@@ -57,8 +80,6 @@ export default function AdminPage() {
 
   async function handleDeleteImage(artistId: number, imageUrl: string) {
     // First, remove the image from storage
-    // todo make it delete images from storage
-    console.log({ imageUrl });
     const { error: storageError } = await supabase.storage.from('artist-images').remove([imageUrl]);
 
     if (storageError) {
