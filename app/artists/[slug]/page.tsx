@@ -1,33 +1,33 @@
 import { Button } from '@/components/ui/button';
+import { createClient } from '@/utils/supabase/server';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-
-// This would typically come from a database or API
-const artistData = {
-  'alex-johnson': {
-    name: 'Alex Johnson',
-    specialty: 'Schwarz & Grau Realismus',
-    bio: 'Alex Johnson ist ein Meister des Schwarz & Grau Realismus mit über 10 Jahren Erfahrung. Seine Liebe zum Detail und die Fähigkeit, lebensechte Bilder zu erschaffen, haben ihm zahlreiche Auszeichnungen und eine treue Kundschaft eingebracht.',
-    image: '/tattoo-artist.jpeg',
-    portfolio: [
-      '/tattoo.jpeg',
-      '/tattoo.jpeg',
-      '/tattoo.jpeg',
-      '/tattoo.jpeg',
-      '/tattoo.jpeg',
-      '/tattoo.jpeg',
-    ],
-    instagram: 'https://instagram.com/alexjohnson',
-  },
-};
 
 type ArtistParams = {
   params: { slug: string };
 };
 
+async function fetchArtist(slug: string) {
+  const supabase = await createClient();
+
+  const formattedName = slug.replace('-', ' ');
+  const { data: artist, error } = await supabase
+    .from('artists')
+    .select('*')
+    .ilike('name', formattedName) // Case-insensitive search
+    .single();
+
+  if (error) {
+    console.error('Error fetching artist:', error);
+    return null;
+  }
+
+  return artist;
+}
+
 export async function generateMetadata({ params }: ArtistParams): Promise<Metadata> {
-  const artist = artistData[params.slug as keyof typeof artistData];
+  const artist = await fetchArtist(params.slug);
 
   if (!artist) {
     return {
@@ -57,8 +57,8 @@ export async function generateMetadata({ params }: ArtistParams): Promise<Metada
   };
 }
 
-export default function ArtistPage({ params }: ArtistParams) {
-  const artist = artistData[params.slug as keyof typeof artistData];
+export default async function ArtistPage({ params }: ArtistParams) {
+  const artist = await fetchArtist(params.slug);
 
   if (!artist) {
     notFound();
@@ -70,7 +70,7 @@ export default function ArtistPage({ params }: ArtistParams) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           <div className="h-full">
             <Image
-              src={artist.image}
+              src={`https://xrkjikypmvonnjzzswbu.supabase.co/storage/v1/object/public/artist-images/${artist.image}`}
               alt={artist.name}
               width={400}
               height={600}
@@ -101,13 +101,14 @@ export default function ArtistPage({ params }: ArtistParams) {
         <h2 className="text-2xl font-semibold mt-12 mb-6">Portfolio</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {artist.portfolio.map((item, index) => (
+            // todo: add dialog viewer here for photos
             <Image
               key={index}
-              src={item}
+              src={`https://xrkjikypmvonnjzzswbu.supabase.co/storage/v1/object/public/artist-images/${item}`}
               alt={`${artist.name}'s Arbeit ${index + 1}`}
               width={400}
               height={600}
-              className="shadow-md hover:shadow-lg transition-shadow duration-300"
+              className="shadow-md hover:shadow-lg transition-shadow duration-300 w-[400px] h-[600px] object-contain"
             />
           ))}
         </div>

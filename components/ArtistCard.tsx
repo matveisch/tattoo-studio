@@ -13,7 +13,12 @@ export function ArtistCard({ name, specialty, image, portfolio }: ArtistCardProp
   return (
     <div className="bg-card overflow-hidden shadow-md">
       <div className="relative h-64">
-        <Image src={image} alt={`${name} - Tätowierer`} fill className="object-cover" />
+        <Image
+          src={`https://xrkjikypmvonnjzzswbu.supabase.co/storage/v1/object/public/artist-images/${image}`}
+          alt={`${name} - Tätowierer`}
+          fill
+          className="object-cover"
+        />
       </div>
       <div className="p-6">
         <h3 className="text-2xl font-semibold mb-2">{name}</h3>
@@ -22,7 +27,7 @@ export function ArtistCard({ name, specialty, image, portfolio }: ArtistCardProp
           {portfolio.map((item, index) => (
             <Image
               key={index}
-              src={item}
+              src={`https://xrkjikypmvonnjzzswbu.supabase.co/storage/v1/object/public/artist-images/${item}`}
               alt={`${name}'s Arbeit ${index + 1}`}
               width={60}
               height={60}

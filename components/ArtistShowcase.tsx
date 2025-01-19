@@ -1,27 +1,24 @@
 import { ArtistCard } from '@/components/ArtistCard';
+import { createClient } from '@/utils/supabase/server';
 
-const artists = [
-  {
-    name: 'Alex Johnson',
-    specialty: 'Schwarz & Grau Realismus',
-    image: '/tattoo-artist.jpeg',
-    portfolio: ['/tattoo.jpeg', '/tattoo.jpeg', '/tattoo.jpeg', '/tattoo.jpeg'],
-  },
-  {
-    name: 'Sam Lee',
-    specialty: 'Japanischer Traditioneller Stil',
-    image: '/tattoo-artist-2.jpeg',
-    portfolio: ['/tattoo.jpeg', '/tattoo.jpeg', '/tattoo.jpeg', '/tattoo.jpeg'],
-  },
-  {
-    name: 'Maria Garcia',
-    specialty: 'Farbiger Neo-Traditioneller Stil',
-    image: '/tattoo-artist.jpeg',
-    portfolio: ['/tattoo.jpeg', '/tattoo.jpeg', '/tattoo.jpeg', '/tattoo.jpeg'],
-  },
-];
+export async function ArtistsShowcase() {
+  const supabase = await createClient();
 
-export function ArtistsShowcase() {
+  const { data: artists, error } = await supabase.from('artists').select('*');
+
+  if (error) {
+    console.error('Error fetching artists:', error);
+
+    return (
+      <section className="py-16 bg-background w-full text-center">
+        <h2 className="text-3xl md:text-4xl font-semibold mb-8">Unsere Talentierten Künstler</h2>
+        <p className="text-red-500">
+          Fehler beim Laden der Künstler. Bitte versuchen Sie es später erneut.
+        </p>
+      </section>
+    );
+  }
+
   return (
     <section className="py-16 bg-background w-full" id="artists">
       <div className="container mx-auto px-4">
@@ -29,9 +26,7 @@ export function ArtistsShowcase() {
           Unsere Talentierten Künstler
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {artists.map((artist) => (
-            <ArtistCard key={artist.name} {...artist} />
-          ))}
+          {artists?.map((artist) => <ArtistCard key={artist.name} {...artist} />)}
         </div>
       </div>
     </section>
