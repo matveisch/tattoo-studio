@@ -13,12 +13,14 @@ export function ArtistCard({ name, specialty, image, portfolio }: ArtistCardProp
   return (
     <div className="bg-card overflow-hidden shadow-md">
       <div className="relative h-64">
-        <Image
-          src={`https://xrkjikypmvonnjzzswbu.supabase.co/storage/v1/object/public/artist-images/${image}`}
-          alt={`${name} - Tätowierer`}
-          fill
-          className="object-cover"
-        />
+        <Link href={`/artists/${name.toLowerCase().replace(' ', '-')}`} className="text-primary">
+          <Image
+            src={`https://xrkjikypmvonnjzzswbu.supabase.co/storage/v1/object/public/artist-images/${image}`}
+            alt={`${name} - Tätowierer`}
+            fill
+            className="object-cover"
+          />
+        </Link>
       </div>
       <div className="p-6">
         <h3 className="text-2xl font-semibold mb-2">{name}</h3>
