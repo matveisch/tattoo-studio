@@ -32,18 +32,18 @@ export async function StudioPortfolio() {
                       alt={`tattoo`}
                       width={400}
                       height={600}
-                      className="shadow-md transition-transform duration-300 group-hover:scale-105"
+                      className="shadow-md transition-transform duration-300 group-hover:scale-105 h-48 w-48 object-cover"
                     />
                   </button>
                 </DialogTrigger>
-                <DialogContent className="max-w-3xl h-full">
-                  <div className="grid grid-cols-1 gap-4">
+                <DialogContent className="max-w-3xl">
+                  <div className="flex justify-center">
                     <Image
                       src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/artist-images/studio/${file.name}`}
                       alt={`tattoo`}
                       width={300}
                       height={300}
-                      className="shadow-md w-full h-full object-contain"
+                      className="shadow-md object-contain"
                     />
                   </div>
                 </DialogContent>

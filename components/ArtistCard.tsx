@@ -49,15 +49,15 @@ export function ArtistCard({ name, specialty, image, portfolio }: ArtistCardProp
                   />
                 </button>
               </DialogTrigger>
-              <DialogContent className="max-w-3xl h-full">
-                <div className="grid grid-cols-1 gap-4">
+              <DialogContent className="max-w-3xl">
+                <div className="flex justify-center">
                   <Image
                     key={index}
                     src={`https://xrkjikypmvonnjzzswbu.supabase.co/storage/v1/object/public/artist-images/${item}`}
                     alt={`${name}'s Arbeit ${index + 1}`}
                     width={300}
                     height={300}
-                    className="shadow-md w-full h-full object-contain"
+                    className="shadow-md object-contain"
                   />
                 </div>
               </DialogContent>

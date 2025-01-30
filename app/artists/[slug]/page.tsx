@@ -108,7 +108,7 @@ export default async function ArtistPage({ params }: ArtistParams) {
               alt={`${artist.name}'s Arbeit ${index + 1}`}
               width={400}
               height={600}
-              className="shadow-md hover:shadow-lg transition-shadow duration-300 w-[400px] h-[600px] object-contain"
+              className="shadow-md hover:shadow-lg transition-shadow duration-300 object-contain"
             />
           ))}
         </div>
