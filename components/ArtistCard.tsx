@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Dialog, DialogContent, DialogTrigger } from './ui/dialog';
 
 interface ArtistCardProps {
   name: string;
@@ -27,14 +28,40 @@ export function ArtistCard({ name, specialty, image, portfolio }: ArtistCardProp
         <p className="text-muted-foreground mb-4">{specialty}</p>
         <div className="flex gap-2 mb-4 overflow-x-auto pb-2">
           {portfolio.map((item, index) => (
-            <Image
-              key={index}
-              src={`https://xrkjikypmvonnjzzswbu.supabase.co/storage/v1/object/public/artist-images/${item}`}
-              alt={`${name}'s Arbeit ${index + 1}`}
-              width={60}
-              height={60}
-              className="object-cover"
-            />
+            // <Image
+            //   key={index}
+            //   src={`https://xrkjikypmvonnjzzswbu.supabase.co/storage/v1/object/public/artist-images/${item}`}
+            //   alt={`${name}'s Arbeit ${index + 1}`}
+            //   width={60}
+            //   height={60}
+            //   className="object-cover"
+            // />
+            <Dialog key={index}>
+              <DialogTrigger asChild>
+                <button className="relative group">
+                  <Image
+                    key={index}
+                    src={`https://xrkjikypmvonnjzzswbu.supabase.co/storage/v1/object/public/artist-images/${item}`}
+                    alt={`${name}'s Arbeit ${index + 1}`}
+                    width={60}
+                    height={60}
+                    className="object-cover"
+                  />
+                </button>
+              </DialogTrigger>
+              <DialogContent className="max-w-3xl h-full">
+                <div className="grid grid-cols-1 gap-4">
+                  <Image
+                    key={index}
+                    src={`https://xrkjikypmvonnjzzswbu.supabase.co/storage/v1/object/public/artist-images/${item}`}
+                    alt={`${name}'s Arbeit ${index + 1}`}
+                    width={300}
+                    height={300}
+                    className="shadow-md w-full h-full object-contain"
+                  />
+                </div>
+              </DialogContent>
+            </Dialog>
           ))}
         </div>
         <div>
