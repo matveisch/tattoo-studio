@@ -43,9 +43,9 @@ export function ArtistCard({ name, specialty, image, portfolio }: ArtistCardProp
                     key={index}
                     src={`https://xrkjikypmvonnjzzswbu.supabase.co/storage/v1/object/public/artist-images/${item}`}
                     alt={`${name}'s Arbeit ${index + 1}`}
-                    width={60}
-                    height={60}
-                    className="object-cover"
+                    width={56}
+                    height={56}
+                    className="object-cover w-14 h-14"
                   />
                 </button>
               </DialogTrigger>
