@@ -4,7 +4,7 @@ import { ArtistForm } from '@/components/ArtistForm';
 import { ArtistList } from '@/components/ArtistList';
 import { StudioPortfolioForm } from '@/components/StudioPortfolioForm';
 import { StudioPortfolioList } from '@/components/StudioPortfolioList';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/utils/supabase/client';
 import { Tables } from '@/utils/supabase/supabase';
 import { useEffect, useState } from 'react';
 
@@ -12,6 +12,7 @@ export default function AdminPage() {
   const [artists, setArtists] = useState<Tables<'artists'>[]>([]);
   const [editingArtist, setEditingArtist] = useState<Tables<'artists'> | null>(null);
   const [studioImages, setStudioImages] = useState<string[]>([]);
+  const supabase = createClient();
 
   useEffect(() => {
     fetchArtists();

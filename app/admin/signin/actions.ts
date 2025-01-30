@@ -1,13 +1,12 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 import { createClient } from '@/utils/supabase/server';
 
 export async function login(formData: FormData) {
-  const supabase = await createClient(cookies());
+  const supabase = await createClient();
 
   // type-casting here for convenience
   // in practice, you should validate your inputs
