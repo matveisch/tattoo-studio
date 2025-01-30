@@ -2,6 +2,8 @@
 
 import { ArtistForm } from '@/components/ArtistForm';
 import { ArtistList } from '@/components/ArtistList';
+import { StudioPortfolioForm } from '@/components/StudioPortfolioForm';
+import { StudioPortfolioList } from '@/components/StudioPortfolioList';
 import { supabase } from '@/lib/supabase';
 import { Tables } from '@/utils/supabase/supabase';
 import { useEffect, useState } from 'react';
@@ -9,9 +11,11 @@ import { useEffect, useState } from 'react';
 export default function AdminPage() {
   const [artists, setArtists] = useState<Tables<'artists'>[]>([]);
   const [editingArtist, setEditingArtist] = useState<Tables<'artists'> | null>(null);
+  const [studioImages, setStudioImages] = useState<string[]>([]);
 
   useEffect(() => {
     fetchArtists();
+    fetchStudioPortfolio();
   }, []);
 
   async function fetchArtists() {
@@ -21,6 +25,14 @@ export default function AdminPage() {
       console.error('Error fetching artists:', error);
     } else {
       setArtists(data || []);
+    }
+  }
+
+  async function fetchStudioPortfolio() {
+    const { data, error } = await supabase.storage.from('artist-images').list('studio');
+
+    if (!error && data) {
+      setStudioImages(data.map((file) => `studio/${file.name}`));
     }
   }
 
@@ -105,9 +117,32 @@ export default function AdminPage() {
     }
   }
 
+  async function handleStudioUpload() {
+    await fetchStudioPortfolio(); // Refresh the list after upload
+  }
+
+  async function handleDeleteStudioImage(filePath: string) {
+    const { error } = await supabase.storage.from('artist-images').remove([filePath]);
+
+    if (!error) {
+      setStudioImages((prev) => prev.filter((path) => path !== filePath));
+    }
+  }
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4 mt-12">Tattoo Artist Admin</h1>
+
+      {/* Studio Portfolio Section */}
+      <div className="mb-12">
+        <h2 className="text-xl font-semibold mb-4">Studio Portfolio</h2>
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_2fr]">
+          <StudioPortfolioForm onUpload={handleStudioUpload} />
+          <StudioPortfolioList images={studioImages} onDelete={handleDeleteStudioImage} />
+        </div>
+      </div>
+
+      {/* Existing Artist Management */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_2fr]">
         <div>
           <h2 className="text-xl font-semibold mb-2">
