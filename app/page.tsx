@@ -5,6 +5,7 @@ import { ArtistsShowcase } from '../components/ArtistShowcase';
 import { ClientCare } from '../components/ClientCare';
 import Hero from '../components/Hero';
 import { StudioPortfolio } from '../components/StudioPortfolio';
+import { StudioOwner } from '@/components/StudioOwner';
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -37,6 +38,7 @@ export default function Home() {
       <StudioPortfolio />
       <ClientCare />
       <AboutUs />
+      <StudioOwner />
       <Contact />
     </>
   );

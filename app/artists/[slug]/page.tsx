@@ -101,7 +101,6 @@ export default async function ArtistPage({ params }: ArtistParams) {
         <h2 className="text-2xl font-semibold mt-12 mb-6">Portfolio</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {artist.portfolio.map((item: string, index: number) => (
-            // todo: add dialog viewer here for photos
             <Image
               key={index}
               src={`https://xrkjikypmvonnjzzswbu.supabase.co/storage/v1/object/public/artist-images/${item}`}
