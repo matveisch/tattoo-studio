@@ -2,7 +2,6 @@
 
 import { ArtistForm } from '@/components/ArtistForm';
 import { ArtistList } from '@/components/ArtistList';
-import { StudioPortfolioForm } from '@/components/StudioPortfolioForm';
 import { StudioPortfolioList } from '@/components/StudioPortfolioList';
 import { createClient } from '@/utils/supabase/client';
 import { Tables } from '@/utils/supabase/supabase';
@@ -12,6 +11,7 @@ export default function AdminPage() {
   const [artists, setArtists] = useState<Tables<'artists'>[]>([]);
   const [editingArtist, setEditingArtist] = useState<Tables<'artists'> | null>(null);
   const [studioImages, setStudioImages] = useState<string[]>([]);
+  const [uploading, setUploading] = useState(false);
   const supabase = createClient();
 
   useEffect(() => {
@@ -118,15 +118,30 @@ export default function AdminPage() {
     }
   }
 
-  async function handleStudioUpload() {
-    await fetchStudioPortfolio(); // Refresh the list after upload
-  }
-
   async function handleDeleteStudioImage(filePath: string) {
     const { error } = await supabase.storage.from('artist-images').remove([filePath]);
 
     if (!error) {
       setStudioImages((prev) => prev.filter((path) => path !== filePath));
+    }
+  }
+
+  async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    try {
+      setUploading(true);
+      const file = e.target.files?.[0];
+      if (!file) return;
+
+      const filePath = `studio/${Date.now()}-${file.name}`;
+      const { data, error } = await supabase.storage.from('artist-images').upload(filePath, file);
+
+      if (!error && data) {
+        await fetchStudioPortfolio();
+      }
+    } catch (error) {
+      console.error('Upload failed:', error);
+    } finally {
+      setUploading(false);
     }
   }
 
@@ -138,7 +153,19 @@ export default function AdminPage() {
       <div className="mb-12">
         <h2 className="text-xl font-semibold mb-4">Studio Portfolio</h2>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_2fr]">
-          <StudioPortfolioForm onUpload={handleStudioUpload} />
+          <div className="p-4 border rounded-lg">
+            <h3 className="font-medium mb-2">Upload Studio Image</h3>
+            <label className="flex items-center gap-2 text-sm">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleUpload}
+                disabled={uploading}
+                className="file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-sm file:bg-gray-100 hover:file:bg-gray-200"
+              />
+              {uploading && <span>Uploading...</span>}
+            </label>
+          </div>
           <StudioPortfolioList images={studioImages} onDelete={handleDeleteStudioImage} />
         </div>
       </div>
