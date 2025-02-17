@@ -16,11 +16,11 @@ export function StudioPortfolioList({
             alt="Studio work"
             width={300}
             height={300}
-            className="rounded-lg object-cover aspect-square"
+            className="rounded-lg object-cover aspect-square w-full h-full"
           />
           <button
             onClick={() => onDelete(filePath)}
-            className="absolute top-2 right-2 bg-red-500 text-white rounded-md p-1.5 opacity-0 group-hover:opacity-100 transition-opacity"
+            className="absolute top-2 right-2 bg-red-500 text-white rounded-md w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity flex justify-center items-center"
           >
             ✕
           </button>

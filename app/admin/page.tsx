@@ -129,15 +129,28 @@ export default function AdminPage() {
   async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
     try {
       setUploading(true);
-      const file = e.target.files?.[0];
-      if (!file) return;
+      const files = Array.from(e.target.files || []);
+      if (files.length === 0) return;
 
-      const filePath = `studio/${Date.now()}-${file.name}`;
-      const { data, error } = await supabase.storage.from('artist-images').upload(filePath, file);
+      // Upload all files concurrently
+      const uploadPromises = files.map((file) => {
+        const filePath = `studio/${Date.now()}-${file.name}`;
+        return supabase.storage.from('artist-images').upload(filePath, file);
+      });
 
-      if (!error && data) {
-        await fetchStudioPortfolio();
+      const results = await Promise.all(uploadPromises);
+
+      // Check if any uploads failed
+      const hasErrors = results.some((result) => result.error);
+      if (hasErrors) {
+        console.error(
+          'Some uploads failed:',
+          results.filter((r) => r.error).map((r) => r.error)
+        );
       }
+
+      // Refresh the portfolio regardless of partial failures
+      await fetchStudioPortfolio();
     } catch (error) {
       console.error('Upload failed:', error);
     } finally {
@@ -152,13 +165,14 @@ export default function AdminPage() {
       {/* Studio Portfolio Section */}
       <div className="mb-12">
         <h2 className="text-xl font-semibold mb-4">Studio Portfolio</h2>
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_2fr]">
+        <div className="grid grid-cols-1 gap-4">
           <div className="p-4 border rounded-lg">
             <h3 className="font-medium mb-2">Upload Studio Image</h3>
             <label className="flex items-center gap-2 text-sm">
               <input
                 type="file"
                 accept="image/*"
+                multiple
                 onChange={handleUpload}
                 disabled={uploading}
                 className="file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-sm file:bg-gray-100 hover:file:bg-gray-200"
@@ -166,6 +180,7 @@ export default function AdminPage() {
               {uploading && <span>Uploading...</span>}
             </label>
           </div>
+
           <StudioPortfolioList images={studioImages} onDelete={handleDeleteStudioImage} />
         </div>
       </div>
