@@ -29,10 +29,11 @@ export default function Hero() {
         </div>
         <div className="relative lg:order-last order-first">
           <Image
-            src="/tattoo-studio-hero.jpg"
+            src="/studio-hero.jpeg"
             alt="Tattoo Studio Innenansicht"
             width={1000}
             height={1000}
+            priority
             className="w-full h-full object-cover"
           />
         </div>
