@@ -57,32 +57,32 @@ export function AboutUs() {
           </div>
           <div className="grid md:grid-cols-2 gap-4">
             <Image
-              src="/environment-1.jpeg"
+              src="/studio-2.jpeg"
               alt="La Rosel Tattoo Atelier Innenraum"
               width={400}
               height={500}
-              className="shadow-md h-[200px] w-full object-cover"
+              className="shadow-md h-[300px] w-full object-cover"
             />
             <Image
-              src="/environment-2.jpeg"
+              src="/studio-3.jpeg"
               alt="Tätowierer bei der Arbeit an einem Fine Line Tattoo"
               width={400}
               height={500}
-              className="shadow-md h-[200px] w-full object-cover"
+              className="shadow-md h-[300px] w-full object-cover"
             />
             <Image
-              src="/environment-3.jpeg"
+              src="/studio-4.jpeg"
               alt="Detailaufnahme eines Miniatur-Realistic Tattoos"
               width={400}
               height={500}
-              className="shadow-md h-[200px] w-full object-cover"
+              className="shadow-md h-[300px] w-full object-cover"
             />
             <Image
-              src="/environment-4.jpeg"
+              src="/studio-5.jpeg"
               alt="Kundenberatung für ein personalisiertes Tattoo-Design"
               width={400}
               height={500}
-              className="shadow-md h-[200px] w-full object-cover"
+              className="shadow-md h-[300px] w-full object-cover"
             />
           </div>
         </div>
