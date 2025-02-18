@@ -38,8 +38,9 @@ export function Contact() {
             <div className="mb-6">
               <h3 className="text-xl font-semibold mb-2">Öffnungszeiten</h3>
               <ul className="space-y-2">
-                <li>Montag - Freitag: 10:00 - 20:00 Uhr</li>
-                <li>Samstag: 11:00 - 18:00 Uhr</li>
+                <li>Montag: Geschlossen</li>
+                <li>Dienstag - Freitag: 12:00 - 18:00 Uhr</li>
+                <li>Samstag: 11:00 - 14:00 Uhr</li>
                 <li>Sonntag: Geschlossen</li>
               </ul>
             </div>

@@ -11,11 +11,11 @@ export default function Hero() {
             </p>
             <h1 className="font-serif text-3xl font-light tracking-tight text-foreground sm:text-5xl lg:text-6xl">
               Zeitlose Kunst
-              <span className="block">in Tinte</span>
+              <span className="block">mit Charakter</span>
             </h1>
             <p className="mt-6 max-w-xl text-base lg:text-lg leading-relaxed text-muted-foreground">
               Erlebe die perfekte Verbindung von künstlerischer Vision und technischer Präzision.
-              Unser Studio erweckt deine Ideen mit unvergleichlicher Detailgenauigkeit zum Leben.
+              Unser Atelier bringt deine Ideen mit unvergleichlicher Detailgenauigkeit zum Leben.
             </p>
             {/* <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-x-6">
               <Button

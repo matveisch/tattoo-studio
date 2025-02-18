@@ -13,7 +13,8 @@ const coreValues = [
   },
   {
     title: 'Menschlichkeit',
-    description: 'Unser Atelier ist ein Ort voller Liebe, wo der Mensch im Mittelpunkt steht.',
+    description:
+      'Unser Atelier ist ein Ort, an dem der Mensch im Mittelpunkt steht und ein respektvolles Miteinander zählt.',
   },
   {
     title: 'Professionalität',
