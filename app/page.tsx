@@ -1,11 +1,10 @@
 import { AboutUs } from '@/components/AboutUs';
 import { Contact } from '@/components/Contact';
+import { StudioOwner } from '@/components/StudioOwner';
 import { Metadata } from 'next';
-import { ArtistsShowcase } from '../components/ArtistShowcase';
 import { ClientCare } from '../components/ClientCare';
 import Hero from '../components/Hero';
 import { StudioPortfolio } from '../components/StudioPortfolio';
-import { StudioOwner } from '@/components/StudioOwner';
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -34,7 +33,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <ArtistsShowcase />
+      {/* <ArtistsShowcase /> */}
       <StudioPortfolio />
       <ClientCare />
       <AboutUs />

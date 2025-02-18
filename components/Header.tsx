@@ -11,7 +11,7 @@ export function Header() {
   const pathname = usePathname();
 
   const navItems = [
-    { href: '/#artists', label: 'Künstler', isButton: false },
+    // { href: '/#artists', label: 'Künstler', isButton: false },
     { href: '/#portfolio', label: 'Portfolio', isButton: false },
     { href: '/#client-care', label: 'Kundenbetreuung', isButton: false },
     { href: '/#about', label: 'Über Uns', isButton: false },

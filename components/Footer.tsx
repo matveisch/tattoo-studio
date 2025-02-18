@@ -18,11 +18,11 @@ export function Footer() {
                   Startseite
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/#artists" className="text-sm hover:underline">
                   Künstler
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/#portfolio" className="text-sm hover:underline">
                   Portfolio
