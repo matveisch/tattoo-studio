@@ -7,24 +7,24 @@ import Hero from '../components/Hero';
 import { StudioPortfolio } from '../components/StudioPortfolio';
 
 export const metadata: Metadata = {
-  title: 'Home',
+  title: 'La Rosel Tattoo Atelier',
   description:
-    'Welcome to Tattoo Studio - where art meets skin. Explore our talented artists, diverse portfolio, and book your tattoo session today.',
+    'Willkommen im La Rosel Tattoo Atelier - wo Kunst auf Haut trifft. Entdecke unsere talentierten Künstler, vielfältiges Portfolio und buche noch heute deinen Termin.',
   openGraph: {
-    title: 'Tattoo Studio | Premium Tattoo Artistry',
+    title: 'La Rosel Tattoo Atelier | Premium Tattoo Kunst',
     description:
-      'Discover exceptional tattoo artistry at Tattoo Studio. View our portfolio, meet our artists, and book your consultation today.',
+      'Entdecke außergewöhnliche Tattoo-Kunst im La Rosel Tattoo Atelier. Sieh dir unser Portfolio an und vereinbare deine Beratung.',
     url: 'https://www.tattoostudio.com',
-    siteName: 'Tattoo Studio',
+    siteName: 'La Rosel Tattoo Atelier',
     images: [
       {
         url: 'https://www.tattoostudio.com/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Tattoo Studio - Premium Tattoo Artistry',
+        alt: 'La Rosel Tattoo Atelier - Premium Tattoo Kunst',
       },
     ],
-    locale: 'en_US',
+    locale: 'de_DE',
     type: 'website',
   },
 };
