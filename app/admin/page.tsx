@@ -1,33 +1,33 @@
 'use client';
 
-import { ArtistForm } from '@/components/ArtistForm';
-import { ArtistList } from '@/components/ArtistList';
+// import { ArtistForm } from '@/components/ArtistForm';
+// import { ArtistList } from '@/components/ArtistList';
 import { StudioPortfolioList } from '@/components/StudioPortfolioList';
 import { createClient } from '@/utils/supabase/client';
-import { Tables } from '@/utils/supabase/supabase';
+// import { Tables } from '@/utils/supabase/supabase';
 import { useEffect, useState } from 'react';
 
 export default function AdminPage() {
-  const [artists, setArtists] = useState<Tables<'artists'>[]>([]);
-  const [editingArtist, setEditingArtist] = useState<Tables<'artists'> | null>(null);
+  // const [artists, setArtists] = useState<Tables<'artists'>[]>([]);
+  // const [editingArtist, setEditingArtist] = useState<Tables<'artists'> | null>(null);
   const [studioImages, setStudioImages] = useState<string[]>([]);
   const [uploading, setUploading] = useState(false);
   const supabase = createClient();
 
   useEffect(() => {
-    fetchArtists();
+    // fetchArtists();
     fetchStudioPortfolio();
   }, []);
 
-  async function fetchArtists() {
-    const { data, error } = await supabase.from('artists').select('*').order('name');
+  // async function fetchArtists() {
+  //   const { data, error } = await supabase.from('artists').select('*').order('name');
 
-    if (error) {
-      console.error('Error fetching artists:', error);
-    } else {
-      setArtists(data || []);
-    }
-  }
+  //   if (error) {
+  //     console.error('Error fetching artists:', error);
+  //   } else {
+  //     setArtists(data || []);
+  //   }
+  // }
 
   async function fetchStudioPortfolio() {
     const { data, error } = await supabase.storage.from('artist-images').list('studio');
@@ -37,86 +37,86 @@ export default function AdminPage() {
     }
   }
 
-  async function handleAddArtist(artistData: Omit<Tables<'artists'>, 'id'>) {
-    const { error } = await supabase.from('artists').insert([artistData]).select();
+  // async function handleAddArtist(artistData: Omit<Tables<'artists'>, 'id'>) {
+  //   const { error } = await supabase.from('artists').insert([artistData]).select();
 
-    if (error) {
-      console.error('Error adding artist:', error);
-    } else {
-      fetchArtists();
-    }
-  }
+  //   if (error) {
+  //     console.error('Error adding artist:', error);
+  //   } else {
+  //     fetchArtists();
+  //   }
+  // }
 
-  async function handleUpdateArtist(id: number, artistData: Omit<Tables<'artists'>, 'id'>) {
-    const { error } = await supabase.from('artists').update(artistData).eq('id', id);
+  // async function handleUpdateArtist(id: number, artistData: Omit<Tables<'artists'>, 'id'>) {
+  //   const { error } = await supabase.from('artists').update(artistData).eq('id', id);
 
-    if (error) {
-      console.error('Error updating artist:', error);
-    } else {
-      fetchArtists();
-      setEditingArtist(null);
-    }
-  }
+  //   if (error) {
+  //     console.error('Error updating artist:', error);
+  //   } else {
+  //     fetchArtists();
+  //     setEditingArtist(null);
+  //   }
+  // }
 
-  async function handleDeleteArtist(id: number) {
-    const { data: artist } = (await supabase
-      .from('artists')
-      .select('image, portfolio')
-      .eq('id', id)
-      .single()) as { data: Tables<'artists'> | null };
+  // async function handleDeleteArtist(id: number) {
+  //   const { data: artist } = (await supabase
+  //     .from('artists')
+  //     .select('image, portfolio')
+  //     .eq('id', id)
+  //     .single()) as { data: Tables<'artists'> | null };
 
-    if (artist) {
-      // Collect all images to delete (profile image + portfolio)
-      const imagesToDelete = artist.portfolio;
-      imagesToDelete.push(artist.image);
+  //   if (artist) {
+  //     // Collect all images to delete (profile image + portfolio)
+  //     const imagesToDelete = artist.portfolio;
+  //     imagesToDelete.push(artist.image);
 
-      // Delete images from storage
-      if (artist.portfolio.length > 0) {
-        const { error: storageError } = await supabase.storage
-          .from('artist-images')
-          .remove(imagesToDelete);
+  //     // Delete images from storage
+  //     if (artist.portfolio.length > 0) {
+  //       const { error: storageError } = await supabase.storage
+  //         .from('artist-images')
+  //         .remove(imagesToDelete);
 
-        if (storageError) {
-          console.error('Error deleting images:', storageError);
-        }
-      }
-    }
+  //       if (storageError) {
+  //         console.error('Error deleting images:', storageError);
+  //       }
+  //     }
+  //   }
 
-    const { error } = await supabase.from('artists').delete().eq('id', id);
+  //   const { error } = await supabase.from('artists').delete().eq('id', id);
 
-    if (error) {
-      console.error('Error deleting artist:', error);
-    } else {
-      fetchArtists();
-    }
-  }
+  //   if (error) {
+  //     console.error('Error deleting artist:', error);
+  //   } else {
+  //     fetchArtists();
+  //   }
+  // }
 
-  async function handleDeleteImage(artistId: number, imageUrl: string) {
-    // First, remove the image from storage
-    const { error: storageError } = await supabase.storage.from('artist-images').remove([imageUrl]);
+  // async function handleDeleteImage(artistId: number, imageUrl: string) {
+  //   // First, remove the image from storage
+  //   const { error: storageError } = await supabase.storage.from('artist-images').remove([imageUrl]);
 
-    if (storageError) {
-      console.error('Error deleting image from storage:', storageError.message);
-      return;
-    }
+  //   if (storageError) {
+  //     console.error('Error deleting image from storage:', storageError.message);
+  //     return;
+  //   }
 
-    // Then, update the artist's portfolio array to remove this image
-    const artist = artists.find((a) => a.id === artistId);
-    if (!artist?.portfolio) return;
+  //   // Then, update the artist's portfolio array to remove this image
+  //   const artist = artists.find((a) => a.id === artistId);
+  //   if (!artist?.portfolio) return;
 
-    const updatedPortfolio = artist.portfolio.filter((img) => img !== imageUrl);
+  //   const updatedPortfolio = artist.portfolio.filter((img) => img !== imageUrl);
 
-    const { error: updateError } = await supabase
-      .from('artists')
-      .update({ portfolio: updatedPortfolio })
-      .eq('id', artistId);
+  //   const { error: updateError } = await supabase
+  //     .from('artists')
+  //     .update({ portfolio: updatedPortfolio })
+  //     .eq('id', artistId);
 
-    if (updateError) {
-      console.error('Error updating artist portfolio:', updateError);
-    } else {
-      fetchArtists(); // Refresh the list
-    }
-  }
+  //   if (updateError) {
+  //     console.error('Error updating artist portfolio:', updateError);
+  //   } else {
+  //     fetchArtists(); // Refresh the list
+  //   }
+  // }
 
   async function handleDeleteStudioImage(filePath: string) {
     const { error } = await supabase.storage.from('artist-images').remove([filePath]);
@@ -128,11 +128,19 @@ export default function AdminPage() {
 
   async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
     try {
-      setUploading(true);
       const files = Array.from(e.target.files || []);
+
+      // Check if files exceed limit
+      if (files.length > 10) {
+        alert('You can only upload up to 10 images at once');
+        return;
+      }
+
       if (files.length === 0) return;
 
-      // Upload all files concurrently
+      setUploading(true);
+
+      // Rest of your upload logic
       const uploadPromises = files.map((file) => {
         const filePath = `studio/${Date.now()}-${file.name}`;
         return supabase.storage.from('artist-images').upload(filePath, file);
@@ -176,6 +184,9 @@ export default function AdminPage() {
                 onChange={handleUpload}
                 disabled={uploading}
                 className="file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-sm file:bg-gray-100 hover:file:bg-gray-200"
+                title="You can select up to 10 images"
+                // Note: HTML attribute maxLength doesn't work for file inputs,
+                // that's why we need the JavaScript check above
               />
               {uploading && <span>Uploading...</span>}
             </label>
