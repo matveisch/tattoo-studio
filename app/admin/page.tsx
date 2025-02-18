@@ -186,7 +186,7 @@ export default function AdminPage() {
       </div>
 
       {/* Existing Artist Management */}
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_2fr]">
+      {/* <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_2fr]">
         <div>
           <h2 className="text-xl font-semibold mb-2">
             {editingArtist ? 'Edit Artist' : 'Add New Artist'}
@@ -207,7 +207,7 @@ export default function AdminPage() {
             onDeleteImage={handleDeleteImage}
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

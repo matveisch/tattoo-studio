@@ -8,7 +8,7 @@ export function StudioPortfolioList({
   onDelete: (filePath: string) => void;
 }) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
       {images.map((filePath) => (
         <div key={filePath} className="relative group">
           <Image
