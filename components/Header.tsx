@@ -11,12 +11,12 @@ export function Header() {
   const pathname = usePathname();
 
   const navItems = [
-    { href: '/#artists', label: 'Artists', isButton: false },
+    // { href: '/#artists', label: 'Künstler', isButton: false },
     { href: '/#portfolio', label: 'Portfolio', isButton: false },
-    { href: '/#client-care', label: 'Client Care', isButton: false },
-    { href: '/#about', label: 'About', isButton: false },
-    { href: '/#contact', label: 'Contact', isButton: false },
-    { href: '/booking', label: 'Book Now', isButton: true },
+    { href: '/#client-care', label: 'Kundenbetreuung', isButton: false },
+    { href: '/#about', label: 'Über Uns', isButton: false },
+    { href: '/#contact', label: 'Kontakt', isButton: false },
+    // { href: '/booking', label: 'Jetzt Buchen', isButton: true },
   ];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -50,14 +50,14 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="text-xl font-semibold text-foreground">
-            Tattoo Studio
+            La Rosel Tattoo Atelier
           </Link>
           <nav className="hidden md:block">
             <ul className="flex space-x-4">
               {navItems.map((item) => (
                 <li key={item.href} className="flex items-center">
                   {item.isButton ? (
-                    <Button asChild variant="outline" size="sm">
+                    <Button asChild variant="outline" size="sm" className="border-secondary">
                       <Link href={item.href}>{item.label}</Link>
                     </Button>
                   ) : (
@@ -78,7 +78,7 @@ export function Header() {
             size="icon"
             className="md:hidden"
             onClick={toggleMenu}
-            aria-label="Toggle menu"
+            aria-label="Menü öffnen"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
@@ -96,9 +96,9 @@ export function Header() {
         <div className="flex flex-col bg-background h-screen">
           <div className="flex justify-between items-center px-4 h-16">
             <Link href="/" className="text-xl font-semibold text-foreground" onClick={toggleMenu}>
-              Tattoo Studio
+              La Rosel Tattoo Atelier
             </Link>
-            <Button variant="ghost" size="icon" onClick={toggleMenu} aria-label="Close menu">
+            <Button variant="ghost" size="icon" onClick={toggleMenu} aria-label="Menü schließen">
               <X className="h-6 w-6" />
             </Button>
           </div>
@@ -111,7 +111,7 @@ export function Header() {
                       asChild
                       variant="outline"
                       size="lg"
-                      className="w-full"
+                      className="w-full border-secondary"
                       onClick={toggleMenu}
                     >
                       <Link href={item.href}>{item.label}</Link>
