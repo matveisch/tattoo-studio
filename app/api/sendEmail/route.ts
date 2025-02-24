@@ -3,12 +3,13 @@ import { sendEmail } from './emailSender';
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, message } = await req.json();
+    const { name, email, message } = await req.json();
     await sendEmail({
       from: 'tattoo@laroselatelier.de',
       to: 'tattoo@laroselatelier.de',
       subject: 'New Client Message',
       text: `
+      name: ${name},
       email: ${email},
       message: ${message}
      `,
