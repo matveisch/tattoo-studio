@@ -9,40 +9,42 @@ export function Contact() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    sendEmail({ name, email, message });
-    // console.log('Formular gesendet:', { name, email, message });
-    setName('');
-    setEmail('');
-    setMessage('');
+    setStatus('sending');
+
+    try {
+      await sendEmail({ name, email, message });
+      setStatus('sent');
+      setName('');
+      setEmail('');
+      setMessage('');
+
+      // Reset status after 3 seconds
+      setTimeout(() => {
+        setStatus('idle');
+      }, 3000);
+    } catch (error) {
+      setStatus('error');
+      setTimeout(() => {
+        setStatus('idle');
+      }, 3000);
+    }
   };
 
   async function sendEmail(data: { name: string; email: string; message: string }) {
-    try {
-      const res = await fetch('/api/sendEmail', {
-        method: 'POST',
-        body: JSON.stringify(data, null, 2),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+    const res = await fetch('/api/sendEmail', {
+      method: 'POST',
+      body: JSON.stringify(data, null, 2),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-      // setHasNotification(true);
-
-      if (!res.ok) {
-        // setBeenSent(false);
-      } else {
-        // reset();
-        // setBeenSent(true);
-      }
-
-      // setTimeout(() => {
-      //   setHasNotification(false);
-      // }, 2500);
-    } catch (e) {
-      // if (e instanceof Error) setErrorMessage(e.message);
+    if (!res.ok) {
+      throw new Error('Failed to send email');
     }
   }
 
@@ -118,9 +120,22 @@ export function Contact() {
                   rows={4}
                 />
               </div>
-              <Button type="submit" className="w-full rounded-none">
-                Nachricht Senden
+              <Button type="submit" className="w-full rounded-none" disabled={status === 'sending'}>
+                {status === 'sending' ? 'Wird gesendet...' : 'Nachricht Senden'}
               </Button>
+
+              {status === 'sent' && (
+                <div className="p-4 bg-green-100 text-green-700 rounded">
+                  Nachricht erfolgreich gesendet!
+                </div>
+              )}
+
+              {status === 'error' && (
+                <div className="p-4 bg-red-100 text-red-700 rounded">
+                  Fehler beim Senden. Bitte versuchen Sie es später erneut.
+                </div>
+              )}
+
               <Button className="w-full rounded-none border-secondary" asChild variant="outline">
                 <a href="https://wa.me/015207638402" target="_blank" rel="noopener noreferrer">
                   <svg
