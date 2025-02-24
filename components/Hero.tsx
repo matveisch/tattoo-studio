@@ -27,7 +27,7 @@ export default function Hero() {
             </div> */}
           </div>
         </div>
-        <div className="relative lg:order-last order-first">
+        <div className="relative lg:order-last order-first h-[50vh] lg:h-auto">
           <Image
             src="/studio-hero.jpeg"
             alt="Tattoo Studio Innenansicht"
