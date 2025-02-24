@@ -14,16 +14,8 @@ export const metadata: Metadata = {
     title: 'La Rosel Tattoo Atelier | Premium Tattoo Kunst',
     description:
       'Entdecke außergewöhnliche Tattoo-Kunst im La Rosel Tattoo Atelier. Sieh dir unser Portfolio an und vereinbare deine Beratung.',
-    url: 'https://www.tattoostudio.com',
+    url: 'https://www.laroselatelier.de',
     siteName: 'La Rosel Tattoo Atelier',
-    images: [
-      {
-        url: 'https://www.tattoostudio.com/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'La Rosel Tattoo Atelier - Premium Tattoo Kunst',
-      },
-    ],
     locale: 'de_DE',
     type: 'website',
   },
