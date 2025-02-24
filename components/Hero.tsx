@@ -7,7 +7,7 @@ export default function Hero() {
         <div className="relative z-10 flex flex-col justify-center px-6 py-12 lg:px-8 lg:py-24">
           <div className="max-w-xl">
             <p className="mb-6 font-mono text-sm uppercase tracking-wider text-muted-foreground">
-              Premium Tattoo Studio
+              Premium Tattoo Atelier
             </p>
             <h1 className="font-serif text-3xl font-light tracking-tight text-foreground sm:text-5xl lg:text-6xl">
               Zeitlose Kunst
