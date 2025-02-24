@@ -3,17 +3,12 @@ import { MetadataRoute } from 'next';
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: 'https://www.tattoostudio.com',
+      url: 'https://www.laroselatelier.de',
       lastModified: new Date(),
     },
     {
-      url: 'https://www.tattoostudio.com/booking',
+      url: 'https://www.laroselatelier.de/agb',
       lastModified: new Date(),
     },
-    {
-      url: 'https://www.tattoostudio.com/artists/alex-johnson',
-      lastModified: new Date(),
-    },
-    // Add more URLs for other pages and artist profiles
   ];
 }
