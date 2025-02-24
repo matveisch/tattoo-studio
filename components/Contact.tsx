@@ -138,7 +138,7 @@ export function Contact() {
               )}
 
               <Button className="w-full rounded-none border-secondary" asChild variant="outline">
-                <a href="https://wa.me/015207638402" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/4915207638402" target="_blank" rel="noopener noreferrer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
