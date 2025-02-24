@@ -26,7 +26,7 @@ export async function StudioPortfolio() {
             data.map((file, index) => (
               <Dialog key={index}>
                 <DialogTrigger asChild>
-                  <button className="relative group">
+                  <button className="relative group flex justify-center items-center">
                     <Image
                       src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/artist-images/studio/${file.name}`}
                       alt={`tattoo`}
