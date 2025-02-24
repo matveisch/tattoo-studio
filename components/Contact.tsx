@@ -12,11 +12,39 @@ export function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Formular gesendet:', { name, email, message });
+    sendEmail({ name, email, message });
+    // console.log('Formular gesendet:', { name, email, message });
     setName('');
     setEmail('');
     setMessage('');
   };
+
+  async function sendEmail(data: { name: string; email: string; message: string }) {
+    try {
+      const res = await fetch('/api/sendEmail', {
+        method: 'POST',
+        body: JSON.stringify(data, null, 2),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      // setHasNotification(true);
+
+      if (!res.ok) {
+        // setBeenSent(false);
+      } else {
+        // reset();
+        // setBeenSent(true);
+      }
+
+      // setTimeout(() => {
+      //   setHasNotification(false);
+      // }, 2500);
+    } catch (e) {
+      // if (e instanceof Error) setErrorMessage(e.message);
+    }
+  }
 
   return (
     <section className="py-16 bg-background w-full" id="contact">
