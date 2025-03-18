@@ -144,7 +144,7 @@ export default function AGBPage() {
               Die Preise für Tätowierungen richten sich nach dem Aufwand, der Größe und dem Motiv.
             </li>
             <li>
-              Die Bezahlung erfolgt nach Abschluss der Tätowierung in bar oder per EC-Karte.
+              Die Bezahlung erfolgt nach Abschluss der Tätowierung in Bar oder per PayPal.
               Gutscheine können ebenfalls eingelöst werden.
             </li>
           </ol>
