@@ -1,11 +1,17 @@
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
-import { createClient } from '@/utils/supabase/server';
 import Image from 'next/image';
+import fs from 'fs/promises';
+import path from 'path';
 
 export async function StudioPortfolio() {
-  const supabase = await createClient();
-
-  const { data, error } = await supabase.storage.from('artist-images').list('studio');
+  let images: string[] = [];
+  try {
+    const directoryPath = path.join(process.cwd(), 'public', 'studio');
+    const files = await fs.readdir(directoryPath);
+    images = files.filter(file => file.match(/\.(jpg|jpeg|png|webp|gif)$/i));
+  } catch (error) {
+    console.error('Failed to read studio directory:', error);
+  }
 
   return (
     <section className="py-16 bg-background w-full" id="portfolio">
@@ -21,34 +27,32 @@ export async function StudioPortfolio() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {!error &&
-            data &&
-            data.map((file, index) => (
-              <Dialog key={index}>
-                <DialogTrigger asChild>
-                  <button className="relative group flex justify-center items-center">
-                    <Image
-                      src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/artist-images/studio/${file.name}`}
-                      alt={`tattoo`}
-                      width={400}
-                      height={600}
-                      className="shadow-md transition-transform duration-300 group-hover:scale-105 h-48 w-48 object-cover"
-                    />
-                  </button>
-                </DialogTrigger>
-                <DialogContent className="max-w-3xl">
-                  <div className="flex justify-center">
-                    <Image
-                      src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/artist-images/studio/${file.name}`}
-                      alt={`tattoo`}
-                      width={300}
-                      height={300}
-                      className="shadow-md object-contain"
-                    />
-                  </div>
-                </DialogContent>
-              </Dialog>
-            ))}
+          {images.map((fileName, index) => (
+            <Dialog key={index}>
+              <DialogTrigger asChild>
+                <button className="relative group flex justify-center items-center">
+                  <Image
+                    src={`/studio/${fileName}`}
+                    alt={`tattoo`}
+                    width={400}
+                    height={600}
+                    className="shadow-md transition-transform duration-300 group-hover:scale-105 h-48 w-48 object-cover"
+                  />
+                </button>
+              </DialogTrigger>
+              <DialogContent className="max-w-3xl">
+                <div className="flex justify-center">
+                  <Image
+                    src={`/studio/${fileName}`}
+                    alt={`tattoo`}
+                    width={800}
+                    height={800}
+                    className="shadow-md object-contain max-h-[80vh] w-auto"
+                  />
+                </div>
+              </DialogContent>
+            </Dialog>
+          ))}
         </div>
       </div>
     </section>
