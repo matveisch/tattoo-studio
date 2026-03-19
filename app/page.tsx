@@ -25,7 +25,6 @@ export default function Home() {
   return (
     <>
       <Hero />
-      {/* <ArtistsShowcase /> */}
       <StudioPortfolio />
       <ClientCare />
       <AboutUs />
